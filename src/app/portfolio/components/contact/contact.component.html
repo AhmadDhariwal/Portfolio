@@ -1,0 +1,61 @@
+<section id="contact" class="pf-section contact">
+  <div class="pf-container contact-grid">
+    <div class="contact-copy">
+      <header class="pf-section-header">
+        <p class="pf-eyebrow">Contact</p>
+        <h2 class="pf-title">Let's work together.</h2>
+        <p class="pf-subtitle">
+          I am open to internships, junior full stack roles, freelance projects, and product-focused
+          collaborations.
+        </p>
+      </header>
+
+      <div class="contact-list">
+        <a [href]="'mailto:' + profile.email">{{ profile.email }}</a>
+        <a [href]="profile.github" target="_blank" rel="noreferrer">{{ profile.githubLabel }}</a>
+        <a [href]="profile.linkedin" target="_blank" rel="noreferrer">www.linkedin.com/in/ahmadhassan023</a>
+        <span>{{ profile.location }}</span>
+      </div>
+
+      <div class="contact-socials">
+        @for (link of socialLinks; track link.label) {
+          <a [href]="link.href" target="_blank" rel="noreferrer" [attr.aria-label]="link.label">
+            <img [src]="link.icon" [alt]="link.label" />
+          </a>
+        }
+      </div>
+    </div>
+
+    <form
+      class="contact-form pf-card"
+      [attr.action]="contactEndpoint"
+      method="POST"
+      (submit)="submit($event)"
+      novalidate
+    >
+      <input type="hidden" name="_subject" [value]="'Portfolio message for ' + profile.name" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_captcha" value="false" />
+      <label>
+        <span>Your Name</span>
+        <input type="text" name="name" [(ngModel)]="form.name" placeholder="Enter your name" required />
+      </label>
+      <label>
+        <span>Your Email</span>
+        <input type="email" name="email" [(ngModel)]="form.email" placeholder="Enter your email" required />
+      </label>
+      <label>
+        <span>Subject</span>
+        <input type="text" name="subject" [(ngModel)]="form.subject" placeholder="Project or role title" />
+      </label>
+      <label>
+        <span>Your Message</span>
+        <textarea name="message" [(ngModel)]="form.message" rows="5" placeholder="Type your message..." required></textarea>
+      </label>
+      <button class="pf-button pf-button-primary" type="submit">Send Message</button>
+      @if (notice) {
+        <p class="notice">{{ notice }}</p>
+      }
+    </form>
+  </div>
+</section>

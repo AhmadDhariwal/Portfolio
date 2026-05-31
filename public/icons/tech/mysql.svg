@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="12" fill="#0f172a"/>
+  <path fill="#38BDF8" d="M10 40c9-14 24-21 44-21-11 5-17 12-20 21H10Z"/>
+  <path fill="#F97316" d="M21 45h28c-9 7-20 8-28 0Z"/>
+  <text x="13" y="32" fill="#fff" font-family="Arial" font-size="12" font-weight="700">SQL</text>
+</svg>

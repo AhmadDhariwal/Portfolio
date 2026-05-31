@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap');
+@import './app/portfolio/styles/portfolio.variables.scss';
+@import './app/portfolio/styles/portfolio.mixins.scss';
+@import './app/portfolio/styles/portfolio.animations.scss';
+
+:root {
+  --body-font: 'Inter', sans-serif;
+  --heading-font: 'Space Grotesk', sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  font-family: var(--pf-font-body);
+  background:
+    radial-gradient(circle at top, rgba(216, 199, 163, 0.1), transparent 25%),
+    radial-gradient(circle at 18% 12%, rgba(95, 127, 141, 0.12), transparent 26%),
+    linear-gradient(180deg, #020302 0%, #050604 42%, #030403 100%);
+  color: var(--pf-text-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: auto 0 0;
+  height: 22rem;
+  background:
+    radial-gradient(circle at 20% 100%, rgba(168, 137, 93, 0.14), transparent 36%),
+    radial-gradient(circle at 80% 100%, rgba(95, 127, 141, 0.12), transparent 30%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+img,
+canvas {
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: rgba(216, 199, 163, 0.34);
+  color: white;
+}

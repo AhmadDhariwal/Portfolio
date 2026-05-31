@@ -1,0 +1,35 @@
+:root {
+  --pf-bg: #030403;
+  --pf-surface: #0c0d0b;
+  --pf-surface-light: rgba(255, 255, 255, 0.06);
+  --pf-border: rgba(245, 239, 226, 0.1);
+  --pf-primary: #d8c7a3;
+  --pf-secondary: #86a7b6;
+  --pf-purple: #8b7a5b;
+  --pf-text-main: #f5efe2;
+  --pf-text-soft: #cfc6b6;
+  --pf-text-muted: #9b9588;
+  --pf-warm-muted: #b8aa8f;
+  --pf-bronze: #a9895d;
+  --pf-cyan-dim: #5f7f8d;
+  --pf-font-body: 'Inter', sans-serif;
+  --pf-font-heading: 'Space Grotesk', sans-serif;
+  --pf-hero-title: 86px;
+  --pf-section-title: 48px;
+  --pf-radius: 24px;
+  --pf-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (max-width: 900px) {
+  :root {
+    --pf-hero-title: 60px;
+    --pf-section-title: 40px;
+  }
+}
+
+@media (max-width: 560px) {
+  :root {
+    --pf-hero-title: 44px;
+    --pf-section-title: 32px;
+  }
+}

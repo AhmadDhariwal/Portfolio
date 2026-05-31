@@ -1,0 +1,64 @@
+<section id="about" class="pf-section about">
+  <div class="pf-container">
+    <header class="pf-section-header">
+      <p class="pf-eyebrow">About Me</p>
+      <h2 class="pf-title">Building digital products that make an impact.</h2>
+      <p class="pf-subtitle">
+        I care about interfaces that look premium, backends that stay understandable, and products
+        that feel ready for a real recruiter conversation.
+      </p>
+    </header>
+
+    <div class="about-grid">
+      <figure class="profile-card pf-card" aria-label="Animated profile card">
+        <span class="profile-halo" aria-hidden="true"></span>
+        <span class="profile-orbit" aria-hidden="true"></span>
+        <span class="profile-scan" aria-hidden="true"></span>
+        <img [src]="profile.portrait.src" [alt]="profile.portrait.alt" />
+        <figcaption class="profile-chip profile-chip-primary">
+          <span></span>
+          {{ profile.role }}
+        </figcaption>
+        <figcaption class="profile-chip profile-chip-secondary">
+          Based in {{ profile.location }}
+        </figcaption>
+      </figure>
+
+      <article class="about-copy pf-card">
+        <span class="copy-glow" aria-hidden="true"></span>
+        <p class="about-label about-copy-line">{{ profile.role }}</p>
+        <h3 class="about-copy-line">Computer Science graduate focused on full stack product craft.</h3>
+        <p class="about-copy-line">{{ profile.summary }}</p>
+
+        <dl class="info-list">
+          @for (row of aboutRows; track row.label) {
+            <div class="info-row">
+              <span class="info-node" aria-hidden="true"></span>
+              <dt>{{ row.label }}</dt>
+              <dd>{{ row.value }}</dd>
+            </div>
+          }
+        </dl>
+      </article>
+
+      <aside class="about-aside">
+        <article class="pf-card compact-card education-card">
+          <span class="compact-kicker">Education</span>
+          <h3>{{ profile.education }}</h3>
+          <p>{{ profile.university }}</p>
+          <p>{{ profile.educationYears }}</p>
+        </article>
+
+        <article class="pf-card compact-card tech-card">
+          <span class="compact-kicker">Tech I Love</span>
+          <span class="tech-ring" aria-hidden="true"></span>
+          <div class="mini-icons">
+            @for (skill of favoriteSkills; track skill.name) {
+              <img [src]="skill.icon" [alt]="skill.name" [title]="skill.name" />
+            }
+          </div>
+        </article>
+      </aside>
+    </div>
+  </div>
+</section>

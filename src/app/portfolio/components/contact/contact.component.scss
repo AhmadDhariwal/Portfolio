@@ -1,0 +1,127 @@
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(320px, 0.92fr);
+  gap: 44px;
+  align-items: start;
+}
+
+.contact-copy {
+  position: sticky;
+  top: 120px;
+}
+
+.contact-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.contact-list a,
+.contact-list span {
+  color: var(--pf-text-muted);
+  font-size: 15px;
+  line-height: 1.5;
+  text-decoration: none;
+  transition:
+    color 220ms var(--pf-ease),
+    transform 220ms var(--pf-ease);
+}
+
+.contact-list a:hover {
+  color: var(--pf-text-main);
+  transform: translateX(6px);
+}
+
+.contact-socials {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.contact-socials a {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--pf-border);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.045);
+  transition:
+    transform 220ms var(--pf-ease),
+    border-color 220ms var(--pf-ease),
+    background 220ms var(--pf-ease),
+    box-shadow 220ms var(--pf-ease);
+}
+
+.contact-socials a:hover {
+  transform: translateY(-6px);
+  border-color: rgba(216, 199, 163, 0.34);
+  background: rgba(245, 239, 226, 0.08);
+  box-shadow: 0 18px 38px rgba(216, 199, 163, 0.1);
+}
+
+.contact-socials img {
+  width: 20px;
+  height: 20px;
+}
+
+.contact-form {
+  display: grid;
+  gap: 14px;
+  padding: 26px;
+}
+
+label {
+  display: grid;
+  gap: 8px;
+}
+
+label span {
+  color: var(--pf-text-soft);
+  font-size: 14px;
+}
+
+input,
+textarea {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  background: rgba(5, 8, 22, 0.66);
+  color: var(--pf-text-main);
+  font: inherit;
+  font-size: 15px;
+}
+
+input {
+  min-height: 48px;
+  padding: 0 16px;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 118px;
+  padding: 15px 16px;
+}
+
+input:focus,
+textarea:focus {
+  outline: 0;
+  border-color: rgba(216, 199, 163, 0.56);
+  box-shadow: 0 0 0 4px rgba(216, 199, 163, 0.12);
+}
+
+.notice {
+  margin: 0;
+  color: #c4b5fd;
+  font-size: 14px;
+}
+
+@media (max-width: 860px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-copy {
+    position: static;
+  }
+}

@@ -1,0 +1,73 @@
+@keyframes pf-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pf-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+@keyframes pf-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pf-panel-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotateX(0deg);
+  }
+
+  50% {
+    transform: translate3d(0, -14px, 0) rotateX(3deg);
+  }
+}
+
+@keyframes pf-scan-pass {
+  0% {
+    transform: translateX(-82%);
+  }
+
+  42%,
+  100% {
+    transform: translateX(84%);
+  }
+}
+
+@keyframes pf-node-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.82);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

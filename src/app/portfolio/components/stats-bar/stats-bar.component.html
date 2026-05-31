@@ -1,0 +1,15 @@
+<section id="stats" class="stats pf-section" aria-label="Portfolio stats">
+  <div class="pf-container stats-shell">
+    @for (stat of stats; track stat.label) {
+      <article class="stat-item pf-card">
+        <div class="stat-icon">
+          <img title="label" [src]="stat.icon" [alt]="stat.label" />
+        </div>
+        <div class="stat-text">
+          <strong>{{ stat.value }}</strong>
+          <span>{{ stat.label }}</span>
+        </div>
+      </article>
+    }
+  </div>
+</section>

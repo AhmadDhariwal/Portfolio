@@ -1,0 +1,36 @@
+AHMAD HASSAN
+Full Stack Developer
+Lahore, Pakistan
+Email: ahmaddhariwal023@gmail.com
+LinkedIn: https://www.linkedin.com/in/ahmadhassan023
+GitHub: https://github.com/ahmaddhariwal
+
+SUMMARY
+Computer Science graduate focused on Angular, Node.js, Express, MongoDB, MySQL, AWS, and AI-powered web products. I enjoy building clean user experiences backed by practical backend architecture.
+
+CORE STACK
+- Angular
+- TypeScript
+- Node.js
+- Express
+- MongoDB
+- MySQL
+- AWS fundamentals
+- AI APIs and applied ML tooling
+
+PROJECTS
+- DevInsight AI: Portfolio and resume analysis platform with recruiter-facing insights
+- Deal-Docks AI Classified: AI-assisted classified listing platform
+- Task Management App: Collaborative productivity dashboard
+- Recipe Finder Website
+- Password Strength Checker
+
+EXPERIENCE
+- Full Stack Developer Intern (learning-focused product work)
+- Backend and full stack personal projects
+- Freelance and self-initiated portfolio projects
+
+EDUCATION
+BS Computer Science, University of Central Punjab
+2021 - 2025
+CGPA: 3.1 / 4.0

@@ -1,0 +1,80 @@
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 34px 28px;
+  margin-top: 48px;
+}
+
+.skill-orb {
+  --skill-color: var(--pf-primary);
+  text-align: center;
+}
+
+.orb-icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 82px;
+  height: 82px;
+  margin: 0 auto 16px;
+  border: 1px solid color-mix(in srgb, var(--skill-color) 42%, rgba(255, 255, 255, 0.12));
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 22%, rgba(255, 255, 255, 0.2), transparent 38%),
+    color-mix(in srgb, var(--skill-color) 20%, rgba(255, 255, 255, 0.04));
+  box-shadow: 0 0 30px color-mix(in srgb, var(--skill-color) 16%, transparent);
+  transition: transform 240ms var(--pf-ease), box-shadow 240ms var(--pf-ease);
+}
+
+.orb-icon::before,
+.orb-icon::after {
+  content: '';
+  position: absolute;
+  border: 1px solid color-mix(in srgb, var(--skill-color) 32%, rgba(255, 255, 255, 0.1));
+  border-radius: 50%;
+}
+
+.orb-icon::before {
+  inset: 7px -10px;
+  transform: rotate(14deg);
+}
+
+.orb-icon::after {
+  inset: -8px 9px;
+  transform: rotate(-26deg);
+}
+
+.skill-orb:hover .orb-icon {
+  transform: translateY(-5px) scale(1.04);
+}
+
+.orb-icon img {
+  width: 36px;
+  height: 36px;
+}
+
+.skill-orb h3 {
+  margin: 0;
+  color: var(--pf-text-main);
+  font-family: var(--pf-font-heading);
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.skill-orb p {
+  margin: 7px 0 0;
+  color: var(--pf-text-muted);
+  font-size: 12px;
+}
+
+@media (max-width: 980px) {
+  .skills-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

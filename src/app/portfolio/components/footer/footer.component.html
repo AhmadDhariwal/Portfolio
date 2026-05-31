@@ -1,0 +1,24 @@
+<footer class="footer">
+  <div class="pf-container footer-grid">
+    <div>
+      <button class="brand" type="button" (click)="scrollTo('home')">{{ profile.shortName }}</button>
+      <p>{{ profile.role }} focused on Angular, Node.js, AI products, and polished UI systems.</p>
+    </div>
+
+    <nav aria-label="Footer navigation">
+      @for (link of navLinks; track link.id) {
+        <button type="button" (click)="scrollTo(link.id)">{{ link.label }}</button>
+      }
+    </nav>
+
+    <div class="footer-socials">
+      @for (link of socialLinks; track link.label) {
+        <a [href]="link.href" target="_blank" rel="noreferrer" [attr.aria-label]="link.label">
+          <img [src]="link.icon" [alt]="link.label" />
+          <span>{{ link.label }}</span>
+        </a>
+      }
+    </div>
+  </div>
+  <p class="copyright">&copy; 2026 Ahmad Hassan. Built with Angular, Three.js and GSAP.</p>
+</footer>

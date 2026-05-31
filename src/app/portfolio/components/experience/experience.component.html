@@ -1,0 +1,37 @@
+<section id="experience" class="pf-section experience">
+  <div class="pf-container">
+    <header class="pf-section-header">
+      <p class="pf-eyebrow">Experience</p>
+      <h2 class="pf-title">My professional journey.</h2>
+      <p class="pf-subtitle">
+        A focused path through full stack practice, backend fundamentals, AI product work, and
+        recruiter-ready project delivery.
+      </p>
+    </header>
+
+    <div class="experience-grid">
+      <div class="timeline">
+        @for (item of timeline; track item.period) {
+          <article class="timeline-card">
+            <span class="timeline-dot"></span>
+            <p>{{ item.period }}</p>
+            <h3>{{ item.title }}</h3>
+            <h4>{{ item.company }}</h4>
+            <span>{{ item.description }}</span>
+          </article>
+        }
+      </div>
+
+      <aside class="education-visual pf-card">
+        <div class="education-picture">
+          <span class="education-orbit" aria-hidden="true"></span>
+          <img [src]="profile.educationVisual.src" [alt]="profile.educationVisual.alt" loading="lazy" />
+          <span class="education-badge">Degree</span>
+        </div>
+        <h3>{{ profile.education }}</h3>
+        <p>{{ profile.university }}</p>
+        <p>{{ profile.educationYears }} | CGPA {{ profile.cgpa }}</p>
+      </aside>
+    </div>
+  </div>
+</section>

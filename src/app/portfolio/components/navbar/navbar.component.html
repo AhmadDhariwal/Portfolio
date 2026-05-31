@@ -1,0 +1,27 @@
+<header class="navbar" [class.navbar-scrolled]="scrolled">
+  <button class="brand" type="button" (click)="navigateTo('home')" aria-label="Go to home">
+    {{ profile.shortName }}
+  </button>
+
+  <nav class="nav-links" [class.nav-links-open]="menuOpen" aria-label="Primary navigation">
+    @for (link of navLinks; track link.id) {
+      <button type="button" [class.active]="activeSection === link.id" (click)="navigateTo(link.id)">
+        {{ link.label }}
+      </button>
+    }
+  </nav>
+
+  <div class="nav-actions">
+    @for (link of socialLinks; track link.label) {
+      <a class="icon-link" [href]="link.href" target="_blank" rel="noreferrer" [attr.aria-label]="link.label">
+        <img [src]="link.icon" [alt]="link.label" />
+      </a>
+    }
+    <a class="pf-button pf-button-secondary resume-link" [href]="profile.resumeUrl" download>Resume</a>
+  </div>
+
+  <button class="menu-button" type="button" (click)="toggleMenu()" aria-label="Toggle navigation">
+    <span></span>
+    <span></span>
+  </button>
+</header>

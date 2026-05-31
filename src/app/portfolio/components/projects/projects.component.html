@@ -1,0 +1,87 @@
+<section id="projects" class="pf-section projects">
+  <div class="pf-container">
+    <header class="pf-section-header projects-header">
+      <div>
+        <p class="pf-eyebrow">My Projects</p>
+        <h2 class="pf-title">Some things I've built.</h2>
+        <p class="pf-subtitle">
+          Project screenshots are rendered from `public/images/projects`. Replace those files with
+          real captures whenever you want the cards to show updated work.
+        </p>
+      </div>
+
+      <div class="filter-row" aria-label="Project filters">
+        @for (filter of projectFilters; track filter; let index = $index) {
+          <button type="button" [class.active]="selectedFilter === filter" (click)="setFilter(filter)">
+            <span></span>
+            {{ filter }}
+          </button>
+        }
+      </div>
+    </header>
+
+    <div class="project-stage" aria-label="Interactive project showcase">
+      <button class="stage-arrow stage-arrow-left" type="button" (click)="previousProject()" aria-label="Previous project">
+        <span></span>
+      </button>
+
+      <div class="stage-grid" aria-live="polite">
+        @for (project of filteredProjects; track project.title; let index = $index) {
+          <article [class]="getStageClass(index)" (click)="setActive(index)" [attr.aria-current]="index === activeIndex">
+            <figure class="project-image">
+              <img [src]="project.image.src" [alt]="project.image.alt" loading="lazy" />
+              @if (project.featured) {
+                <figcaption>Featured</figcaption>
+              }
+            </figure>
+
+            <div class="project-content">
+              <p class="project-subtitle">{{ project.subtitle || 'Project' }}</p>
+              <h3>{{ project.title }}</h3>
+              <p>{{ project.description }}</p>
+
+              @if (index === activeIndex) {
+                <ul class="highlight-list">
+                  @for (item of project.highlights; track item) {
+                    <li>{{ item }}</li>
+                  }
+                </ul>
+              }
+
+              <div class="tech-row">
+                @for (tech of project.tech.slice(0, index === activeIndex ? 6 : 3); track tech) {
+                  <span>{{ tech }}</span>
+                }
+              </div>
+
+              @if (index === activeIndex) {
+                <div class="project-actions">
+                  @for (link of project.links; track link.label) {
+                    <a [href]="link.href" [class.primary]="link.primary">{{ link.label }}</a>
+                  }
+                </div>
+              }
+            </div>
+          </article>
+        }
+      </div>
+
+      <button class="stage-arrow stage-arrow-right" type="button" (click)="nextProject()" aria-label="Next project">
+        <span></span>
+      </button>
+
+      <div class="stage-selector" aria-label="Select project">
+        @for (project of filteredProjects; track project.title; let index = $index) {
+          <button type="button" [class.active]="index === activeIndex" (click)="setActive(index)">
+            <span></span>
+            {{ project.title }}
+          </button>
+        }
+        <button class="shuffle-button" type="button" (click)="shuffleProjects()">
+          <span></span>
+          Shuffle
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

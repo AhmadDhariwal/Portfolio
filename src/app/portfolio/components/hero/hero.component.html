@@ -1,0 +1,86 @@
+<section id="home" class="hero pf-section" aria-label="Portfolio hero">
+  <video
+    class="hero-bg-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    [muted]="true"
+    (loadedmetadata)="muteVideo($event)"
+    poster="./images/hero/space-mountains.svg"
+    aria-hidden="true"
+  >
+    <source [src]="profile.heroVideo" type="video/mp4" />
+  </video>
+  <div class="hero-grid-overlay" aria-hidden="true"></div>
+  <div class="hero-vignette" aria-hidden="true"></div>
+
+  <div class="pf-container hero-grid">
+    <div class="hero-copy">
+      <div class="name-motion" aria-hidden="true">
+        <video autoplay muted loop playsinline [muted]="true" (loadedmetadata)="muteVideo($event)">
+          <source [src]="profile.heroVideo" type="video/mp4" />
+        </video>
+        <span class="name-motion-scan"></span>
+        <span class="name-motion-node node-a"></span>
+        <span class="name-motion-node node-b"></span>
+      </div>
+
+      <p class="hero-kicker hero-reveal">Hi, I'm</p>
+      <h1 class="hero-title hero-reveal">
+        <span>Ahmad</span>
+        <span class="pf-gradient-text">Hassan</span>
+      </h1>
+      <p class="hero-role hero-reveal">{{ profile.role }}</p>
+      <p class="stack-line hero-reveal">{{ profile.stackLine }}</p>
+      <p class="hero-text hero-reveal">{{ profile.tagline }}</p>
+
+      <div class="hero-actions hero-reveal">
+        <button class="pf-button pf-button-primary" type="button" (click)="scrollTo('projects')">
+          View My Work
+        </button>
+        <button class="pf-button pf-button-secondary" type="button" (click)="scrollTo('contact')">
+          Contact Me
+        </button>
+        <a class="pf-button pf-button-ghost" [href]="profile.resumeUrl" download>Resume</a>
+      </div>
+
+      <ul class="stack-list hero-reveal" aria-label="Core technologies">
+        @for (item of heroStack; track item) {
+          <li>{{ item }}</li>
+        }
+      </ul>
+
+      <button class="scroll-cue hero-reveal" type="button" (click)="scrollTo('stats')" aria-label="Scroll to stats">
+        <span></span>
+        Scroll
+      </button>
+    </div>
+
+    <div class="hero-art" aria-label="Animated 3D crystal object">
+      <div class="interface-panel panel-left" aria-hidden="true">
+        <span>01</span>
+        <strong>Scalable Systems</strong>
+        <p>Angular interfaces backed by clean API logic.</p>
+      </div>
+
+      <div class="hero-scene-wrap">
+        <app-three-scene></app-three-scene>
+      </div>
+
+      <div class="interface-panel panel-right" aria-hidden="true">
+        <span>02</span>
+        <strong>AI Product Layer</strong>
+        <p>Practical automation, analysis, and recruiter signals.</p>
+      </div>
+
+      <div class="social-rail" aria-label="Social links">
+        @for (link of socialLinks; track link.label) {
+          <a [href]="link.href" target="_blank" rel="noreferrer" [attr.aria-label]="link.label">
+            <img [src]="link.icon" [alt]="link.label" />
+          </a>
+        }
+      </div>
+    </div>
+  </div>
+</section>
