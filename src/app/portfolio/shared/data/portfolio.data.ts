@@ -26,7 +26,7 @@ export const profile: Profile = {
   university: 'University of Central Punjab, Lahore',
   educationYears: '2021 - 2025',
   cgpa: '3.1 / 4.0',
-  availability: 'Internship / Junior Full Stack / Freelance',
+  availability: 'Open',
   githubLabel: 'ahmaddhariwal',
   github: 'https://github.com/ahmaddhariwal',
   linkedin: 'https://www.linkedin.com/in/ahmadhassan023',
@@ -65,8 +65,8 @@ export const heroStack = ['Angular', 'Node.js', 'Express', 'MongoDB', 'MySQL', '
 
 export const stats: Stat[] = [
   { icon: portfolioAssets.icons.ui.code, value: '2+', label: 'Years Learning & Building' },
-  { icon: portfolioAssets.icons.ui.briefcase, value: '10+', label: 'Projects Completed' },
-  { icon: portfolioAssets.icons.ui.spark, value: '2', label: 'Major AI Projects' },
+  { icon: portfolioAssets.icons.ui.briefcase, value: '5+', label: 'Projects Completed' },
+  { icon: portfolioAssets.icons.ui.spark, value: '1', label: 'Major AI Projects' },
   { icon: portfolioAssets.icons.ui.heart, value: '100%', label: 'Full Stack Focus' }
 ];
 
@@ -84,89 +84,74 @@ export const projects: Project[] = [
     title: 'DevInsight AI',
     subtitle: 'Developer Portfolio Analyzer',
     description:
-      'AI-powered platform that analyzes portfolios, GitHub profiles, resumes, skill gaps, job readiness, recruiter signals, and career recommendations.',
+      'AI-powered platform that analyzes developer portfolios, GitHub profiles, resumes, and technical skills — with recruiter dashboards, skill-gap identification, and personalized career recommendations.',
     featured: true,
     filters: ['All', 'Full Stack', 'AI/ML', 'Backend'],
     image: {
       src: portfolioAssets.projects.devInsight,
       alt: 'DevInsight AI dashboard preview'
     },
-    tech: ['Angular', 'Node.js', 'Express', 'MongoDB', 'JWT', 'AI APIs'],
-    highlights: ['GitHub analysis', 'Resume analyzer', 'Recruiter dashboard', 'Career recommendations'],
+    tech: ['Angular', 'Node.js', 'Express', 'MongoDB', 'JWT', 'GitHub API'],
+    highlights: ['GitHub repo analysis', 'Skill-gap identification', 'Recruiter dashboard', 'Career recommendations'],
     links: [
       { label: 'Case Study', href: '#projects', primary: true },
       { label: 'GitHub', href: profile.github },
       { label: 'Live Demo', href: '#contact' }
+    ]
+  },
+  {
+    title: 'Inventory Management System',
+    subtitle: 'Full Stack Inventory Tracker',
+    description:
+      'Full-stack inventory management app for tracking products, suppliers, stock movements, and purchase orders — with dashboard analytics, role-based access control, and automated tracking workflows.',
+    featured: true,
+    filters: ['All', 'Full Stack', 'Backend'],
+    image: {
+      src: portfolioAssets.projects.recipeFinder,
+      alt: 'Inventory Management System preview'
+    },
+    tech: ['Angular', 'Node.js', 'Express.js', 'MongoDB'],
+    highlights: ['CRUD & filtering', 'Role-based access', 'Dashboard analytics', 'Optimized REST APIs'],
+    links: [
+      { label: 'Case Study', href: '#projects', primary: true },
+      { label: 'GitHub', href: profile.github }
+    ]
+  },
+  {
+    title: 'E-Commerce Platform',
+    subtitle: 'Full Stack Shop',
+    description:
+      'Full-featured e-commerce platform with product catalog, shopping cart, JWT authentication, order management, and category-based navigation — optimized for desktop and mobile.',
+    featured: false,
+    filters: ['All', 'Full Stack', 'Backend'],
+    image: {
+      src: portfolioAssets.projects.passwordChecker,
+      alt: 'E-Commerce Platform preview'
+    },
+    tech: ['Angular', 'Node.js', 'Express.js', 'MongoDB', 'JWT'],
+    highlights: ['Product catalog', 'Cart & orders', 'Secure auth', 'Responsive UI'],
+    links: [
+      { label: 'Case Study', href: '#projects', primary: true },
+      { label: 'GitHub', href: profile.github }
     ]
   },
   {
     title: 'Deal-Docks AI Classified',
     subtitle: 'AI Listing Platform',
     description:
-      'AI classified product listing app with product recognition, Gemini title generation, smart pricing suggestions, Firebase auth, and Flask services.',
+      'AI-powered classified marketplace with YOLO-based product recognition (90%+ accuracy), Gemini-generated titles and descriptions, dynamic pricing recommendations, and secure Firebase auth.',
     featured: true,
     filters: ['All', 'Full Stack', 'AI/ML', 'Frontend'],
     image: {
       src: portfolioAssets.projects.dealDocks,
       alt: 'Deal-Docks AI listing platform preview'
     },
-    tech: ['React', 'Flask', 'Firebase', 'MongoDB', 'Gemini API', 'YOLO'],
-    highlights: ['Image recognition', 'Smart descriptions', 'Secure auth', 'Product listing system'],
+    tech: ['React', 'Flask', 'Firebase', 'Gemini API', 'YOLO', 'Roboflow'],
+    highlights: ['90%+ detection accuracy', 'AI-generated listings', 'Dynamic pricing', 'Secure auth'],
     links: [
       { label: 'Case Study', href: '#projects', primary: true },
       { label: 'GitHub', href: profile.github },
       { label: 'Live Demo', href: '#contact' }
-    ]
-  },
-  {
-    title: 'Recipe Finder',
-    description:
-      'Responsive recipe discovery interface with search flows, category browsing, clean cards, and API-backed content states.',
-    featured: false,
-    filters: ['All', 'Frontend'],
-    image: {
-      src: portfolioAssets.projects.recipeFinder,
-      alt: 'Recipe Finder website preview'
-    },
-    tech: ['Angular', 'TypeScript', 'REST API'],
-    highlights: ['Search UI', 'Categories', 'Responsive layout'],
-    links: [
-      { label: 'Live Demo', href: '#contact', primary: true },
-      { label: 'GitHub', href: profile.github }
-    ]
-  },
-  {
-    title: 'Password Strength Checker',
-    description:
-      'Security-focused utility that visualizes password strength, feedback rules, and progressive scoring in a compact UI.',
-    featured: false,
-    filters: ['All', 'Frontend'],
-    image: {
-      src: portfolioAssets.projects.passwordChecker,
-      alt: 'Password Strength Checker preview'
-    },
-    tech: ['JavaScript', 'CSS', 'Accessibility'],
-    highlights: ['Live scoring', 'Feedback rules', 'Input states'],
-    links: [
-      { label: 'Live Demo', href: '#contact', primary: true },
-      { label: 'GitHub', href: profile.github }
-    ]
-  },
-  {
-    title: 'Personal Portfolio',
-    description:
-      'Premium Angular portfolio with 3D hero scene, reusable content data, polished glass cards, and responsive sections.',
-    featured: false,
-    filters: ['All', 'Frontend', 'Full Stack'],
-    image: {
-      src: portfolioAssets.projects.portfolio,
-      alt: 'Personal portfolio preview'
-    },
-    tech: ['Angular', 'Three.js', 'GSAP', 'SCSS'],
-    highlights: ['3D hero', 'Responsive sections', 'Data-driven content'],
-    links: [
-      { label: 'Live Demo', href: '#home', primary: true },
-      { label: 'GitHub', href: profile.github }
     ]
   }
 ];
@@ -181,26 +166,28 @@ export const skills: Skill[] = [
   { name: 'MySQL', icon: './icons/tech/mysql.svg', accent: '#60a5fa', category: 'Database' },
   { name: 'AWS', icon: './icons/tech/aws.svg', accent: '#ffb347', category: 'Cloud' },
   { name: 'GitHub', icon: './icons/tech/github.svg', accent: '#f8fafc', category: 'Tools' },
-  { name: 'Docker', icon: './icons/tech/docker.svg', accent: '#22d3ee', category: 'Tools' }
+  { name: 'Docker', icon: './icons/tech/docker.svg', accent: '#22d3ee', category: 'Tools' },
+  { name: 'Postman', icon: './icons/tech/postman.svg', accent: '#FF6C37', category: 'Tools' },
+  { name: 'Jira', icon: './icons/tech/jira.svg', accent: '#2684FF', category: 'Tools' }
 ];
 
 export const timeline: TimelineItem[] = [
   {
-    period: '2024 - Present',
+    period: 'March 2026 – Present',
+    title: 'Associate Software Engineer',
+    company: 'iCommunix',
+    description:
+      'Building full-stack web apps with Angular, Node.js, Express.js, MongoDB, MySQL, and AWS. Developing scalable APIs, reusable components, and responsive UIs while collaborating in Agile sprints and contributing to enterprise communication solutions.Work with AWS services including Lambda, API Gateway, S3, and connect for cloud-based application development.Optimize application performance, maintain code quality, and participate in code reviews.'
+  },
+  {
+    period: 'Nov 2025 – Feb 2026',
     title: 'Full Stack Developer Intern',
-    company: 'Product-focused full stack work',
+    company: 'iCommunix',
     description:
-      'Working on full stack web applications using Angular, Node.js, APIs, databases, and AWS-backed backend learning.'
+      'Assisted in the development of full-stack applications using Angular and Node.js. Implemented frontend features, API integrations, and database operations. Worked with MongoDB and MySQL databases for data modeling and management. Gained hands-on experience with AWS cloud services and serverless architectures. Participated in sprint planning, bug fixing, testing, and feature deployments.'
   },
   {
-    period: '2023 - 2024',
-    title: 'Backend / Full Stack Projects',
-    company: 'Personal and academic builds',
-    description:
-      'Built REST APIs, authentication flows, MongoDB/MySQL integrations, and production-style project structures.'
-  },
-  {
-    period: '2022 - 2023',
+    period: '2022 - 2025',
     title: 'Freelance / Personal Projects',
     company: 'Independent product practice',
     description:

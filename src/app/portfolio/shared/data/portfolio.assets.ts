@@ -8,7 +8,7 @@ export const portfolioAssets = {
     degreeVisual: './images/education/degree-university.svg'
   },
   projects: {
-    devInsight: './images/projects/devinsight-ai.svg',
+    devInsight: './images/projects/devinsightai.png',
     dealDocks: './images/projects/deal-docks.svg',
     recipeFinder: './images/projects/recipe-finder.svg',
     passwordChecker: './images/projects/password-checker.svg',
