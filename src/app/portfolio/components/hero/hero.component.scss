@@ -1,6 +1,8 @@
 .hero {
   position: relative;
+  /* vh fallback, then svh so mobile browser chrome doesn't inflate the hero. */
   min-height: calc(100vh - 72px);
+  min-height: calc(100svh - 72px);
   display: grid;
   align-items: center;
   padding-top: 34px;
@@ -46,7 +48,8 @@
 
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 0.4fr) minmax(420px, 0.6fr);
+  /* min(420px, 40vw) keeps the art from forcing overflow on mid-width screens. */
+  grid-template-columns: minmax(0, 0.4fr) minmax(min(420px, 40vw), 0.6fr);
   align-items: center;
   gap: clamp(56px, 7vw, 112px);
 }

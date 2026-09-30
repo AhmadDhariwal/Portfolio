@@ -3,7 +3,12 @@
     {{ profile.shortName }}
   </button>
 
-  <nav class="nav-links" [class.nav-links-open]="menuOpen" aria-label="Primary navigation">
+  <nav
+    id="primary-nav"
+    class="nav-links"
+    [class.nav-links-open]="menuOpen"
+    aria-label="Primary navigation"
+  >
     @for (link of navLinks; track link.id) {
       <button type="button" [class.active]="activeSection === link.id" (click)="navigateTo(link.id)">
         {{ link.label }}
@@ -20,7 +25,15 @@
     <a class="pf-button pf-button-secondary resume-link" [href]="profile.resumeUrl" download>Resume</a>
   </div>
 
-  <button class="menu-button" type="button" (click)="toggleMenu()" aria-label="Toggle navigation">
+  <button
+    class="menu-button"
+    [class.menu-button-open]="menuOpen"
+    type="button"
+    (click)="toggleMenu()"
+    [attr.aria-label]="menuOpen ? 'Close navigation menu' : 'Open navigation menu'"
+    [attr.aria-expanded]="menuOpen"
+    aria-controls="primary-nav"
+  >
     <span></span>
     <span></span>
   </button>

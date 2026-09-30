@@ -130,6 +130,7 @@
 
 .about-copy {
   isolation: isolate;
+  min-width: 0;
   padding: 30px;
   background:
     radial-gradient(circle at 10% 10%, rgba(216, 199, 163, 0.12), transparent 34%),
@@ -216,8 +217,10 @@
 
 .info-list dd {
   margin: 0;
+  min-width: 0;
   color: var(--pf-text-main);
   font-size: 14px;
+  overflow-wrap: anywhere;
 }
 
 .about-aside {

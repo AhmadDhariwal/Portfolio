@@ -119,12 +119,26 @@
   background: var(--pf-text-main);
 }
 
+.menu-button span {
+  transition: transform 200ms var(--pf-ease), opacity 160ms var(--pf-ease);
+}
+
 .menu-button span:first-child {
   top: 15px;
 }
 
 .menu-button span:last-child {
   bottom: 15px;
+}
+
+.menu-button-open span:first-child {
+  top: 20px;
+  transform: rotate(45deg);
+}
+
+.menu-button-open span:last-child {
+  bottom: 19px;
+  transform: rotate(-45deg);
 }
 
 @media (max-width: 820px) {

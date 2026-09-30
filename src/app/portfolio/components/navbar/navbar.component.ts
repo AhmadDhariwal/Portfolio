@@ -5,6 +5,7 @@ import {
   ChangeDetectorRef,
   Component,
   DestroyRef,
+  HostListener,
   NgZone,
   inject
 } from '@angular/core';
@@ -93,5 +94,20 @@ export class NavbarComponent implements AfterViewInit {
 
   toggleMenu(): void {
     this.menuOpen = !this.menuOpen;
+  }
+
+  @HostListener('document:keydown.escape')
+  onEscape(): void {
+    if (this.menuOpen) {
+      this.menuOpen = false;
+    }
+  }
+
+  @HostListener('window:resize')
+  onResize(): void {
+    // Prevent a stuck open mobile menu when resizing up to the desktop layout.
+    if (this.menuOpen && window.innerWidth > 820) {
+      this.menuOpen = false;
+    }
   }
 }

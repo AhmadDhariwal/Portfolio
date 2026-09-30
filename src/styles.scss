@@ -10,11 +10,17 @@
 
 html {
   scroll-behavior: smooth;
+  /* Safety net against unintended horizontal scroll at any viewport. */
+  overflow-x: clip;
 }
 
 body {
   margin: 0;
   min-width: 320px;
+  overflow-x: clip;
+  /* Respect notches / rounded corners on modern mobile browsers. */
+  padding-left: env(safe-area-inset-left, 0);
+  padding-right: env(safe-area-inset-right, 0);
   font-family: var(--pf-font-body);
   background:
     radial-gradient(circle at top, rgba(216, 199, 163, 0.1), transparent 25%),
