@@ -576,8 +576,16 @@
     display: none;
   }
 
+  /*
+   * Center the arrows on the project image band instead of a fixed 220px.
+   * The stacked card puts a 16/9 image at the top; image width is the
+   * viewport minus the container gutter (28px) and stage padding (36px),
+   * so its height is (100vw - 64px) * 9 / 16. Arrow (48px tall) is centered
+   * on that band, offset by the stage's 18px top padding. This tracks the
+   * real image height at every mobile width.
+   */
   .stage-arrow {
-    top: 220px;
+    top: calc(18px + (100vw - 64px) * 9 / 16 / 2 - 24px);
   }
 
   .stage-arrow-left {

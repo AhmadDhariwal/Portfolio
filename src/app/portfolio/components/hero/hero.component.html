@@ -1,17 +1,17 @@
 <section id="home" class="hero pf-section" aria-label="Portfolio hero">
   <video
     class="hero-bg-video"
-    [autoplay]="!reduceMotion"
+    [autoplay]="!skipHeroVideo"
     muted
     loop
     playsinline
-    [attr.preload]="reduceMotion ? 'none' : 'metadata'"
+    [attr.preload]="skipHeroVideo ? 'none' : 'metadata'"
     [muted]="true"
     (loadedmetadata)="muteVideo($event)"
     poster="./images/hero/space-mountains.svg"
     aria-hidden="true"
   >
-    @if (!reduceMotion) {
+    @if (!skipHeroVideo) {
       <source [src]="profile.heroVideo" type="video/mp4" />
     }
   </video>

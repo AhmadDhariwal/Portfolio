@@ -25,6 +25,33 @@ export class HeroComponent {
     typeof window.matchMedia === 'function' &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /**
+   * Skip the 938 KB background video (show the poster instead) when it is least
+   * worth its cost: reduced-motion, Data Saver, or a narrow/mobile viewport.
+   * Uses capability checks rather than assuming "mobile = slow".
+   */
+  readonly skipHeroVideo = this.reduceMotion || this.isConstrainedConnection();
+
+  private isConstrainedConnection(): boolean {
+    if (typeof window === 'undefined') {
+      return true;
+    }
+
+    const connection = (navigator as unknown as {
+      connection?: { saveData?: boolean; effectiveType?: string };
+    }).connection;
+
+    if (connection?.saveData) {
+      return true;
+    }
+
+    if (connection?.effectiveType && /2g/.test(connection.effectiveType)) {
+      return true;
+    }
+
+    return window.innerWidth < 768;
+  }
+
   scrollTo(id: string): void {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
