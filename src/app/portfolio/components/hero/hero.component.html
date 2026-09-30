@@ -1,16 +1,19 @@
 <section id="home" class="hero pf-section" aria-label="Portfolio hero">
   <video
     class="hero-bg-video"
-    autoplay
+    [autoplay]="!reduceMotion"
     muted
     loop
     playsinline
+    [attr.preload]="reduceMotion ? 'none' : 'metadata'"
     [muted]="true"
     (loadedmetadata)="muteVideo($event)"
     poster="./images/hero/space-mountains.svg"
     aria-hidden="true"
   >
-    <source [src]="profile.heroVideo" type="video/mp4" />
+    @if (!reduceMotion) {
+      <source [src]="profile.heroVideo" type="video/mp4" />
+    }
   </video>
   <div class="hero-grid-overlay" aria-hidden="true"></div>
   <div class="hero-vignette" aria-hidden="true"></div>
@@ -18,9 +21,7 @@
   <div class="pf-container hero-grid">
     <div class="hero-copy">
       <div class="name-motion" aria-hidden="true">
-        <video autoplay muted loop playsinline [muted]="true" (loadedmetadata)="muteVideo($event)">
-          <source [src]="profile.heroVideo" type="video/mp4" />
-        </video>
+        <span class="name-motion-still"></span>
         <span class="name-motion-scan"></span>
         <span class="name-motion-node node-a"></span>
         <span class="name-motion-node node-b"></span>

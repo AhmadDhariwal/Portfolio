@@ -71,3 +71,30 @@
     transition-duration: 0.001ms !important;
   }
 }
+
+/*
+ * Mobile GPU relief: the decorative, always-running keyframe loops
+ * (floating panels, orbits, pulses, scan sweeps) are the most expensive
+ * thing to composite continuously on phones. Stop only the ambient motion;
+ * gradients, borders, shadows, and interactive transitions are untouched,
+ * so the design language is preserved.
+ */
+@media (max-width: 760px) {
+  .name-motion-scan,
+  .name-motion-node,
+  .interface-panel,
+  .hero-scene-wrap,
+  .profile-card,
+  .profile-halo,
+  .profile-orbit,
+  .profile-scan,
+  .info-node,
+  .education-card,
+  .tech-card,
+  .tech-ring,
+  .mini-icons img,
+  .timeline-card,
+  .education-orbit {
+    animation: none !important;
+  }
+}

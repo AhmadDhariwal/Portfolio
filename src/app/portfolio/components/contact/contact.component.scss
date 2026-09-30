@@ -116,6 +116,10 @@ textarea:focus {
   font-size: 14px;
 }
 
+.notice:empty {
+  display: none;
+}
+
 @media (max-width: 860px) {
   .contact-grid {
     grid-template-columns: 1fr;

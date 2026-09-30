@@ -1,4 +1,11 @@
-import { AfterViewInit, Component, ElementRef, inject } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  ElementRef,
+  inject
+} from '@angular/core';
 import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ExperienceComponent } from './components/experience/experience.component';
@@ -25,12 +32,21 @@ import { runPortfolioAnimations } from './shared/utils/animation.utils';
     FooterComponent
   ],
   templateUrl: './portfolio.component.html',
-  styleUrl: './portfolio.component.scss'
+  styleUrl: './portfolio.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PortfolioComponent implements AfterViewInit {
   private readonly host = inject(ElementRef<HTMLElement>);
+  private readonly destroyRef = inject(DestroyRef);
+  private cleanupAnimations?: () => void;
 
   ngAfterViewInit(): void {
-    runPortfolioAnimations(this.host).catch(() => undefined);
+    runPortfolioAnimations(this.host)
+      .then((cleanup) => {
+        this.cleanupAnimations = cleanup;
+      })
+      .catch(() => undefined);
+
+    this.destroyRef.onDestroy(() => this.cleanupAnimations?.());
   }
 }

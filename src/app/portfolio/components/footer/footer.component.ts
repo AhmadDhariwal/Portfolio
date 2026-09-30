@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { navLinks, profile, socialLinks } from '../../shared/data/portfolio.data';
 
 @Component({
@@ -7,7 +7,8 @@ import { navLinks, profile, socialLinks } from '../../shared/data/portfolio.data
   standalone: true,
   imports: [CommonModule],
   templateUrl: './footer.component.html',
-  styleUrl: './footer.component.scss'
+  styleUrl: './footer.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FooterComponent {
   readonly profile = profile;

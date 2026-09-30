@@ -26,3 +26,12 @@ canvas {
   position: relative;
   z-index: 1;
 }
+
+/* Shown when WebGL is unavailable: a soft crystal-like glow stands in for the 3D scene. */
+canvas.scene-fallback {
+  background:
+    radial-gradient(circle at 50% 46%, rgba(216, 199, 163, 0.34), transparent 46%),
+    radial-gradient(circle at 42% 60%, rgba(134, 167, 182, 0.22), transparent 40%);
+  border-radius: 50%;
+  filter: blur(6px);
+}

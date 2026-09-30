@@ -14,7 +14,16 @@
         <span class="profile-halo" aria-hidden="true"></span>
         <span class="profile-orbit" aria-hidden="true"></span>
         <span class="profile-scan" aria-hidden="true"></span>
-        <img [src]="profile.portrait.src" [alt]="profile.portrait.alt" />
+        <img
+          [src]="profile.portrait.src"
+          [attr.srcset]="portraitSrcset"
+          sizes="(max-width: 980px) 90vw, 340px"
+          [alt]="profile.portrait.alt"
+          width="440"
+          height="550"
+          loading="lazy"
+          decoding="async"
+        />
         <figcaption class="profile-chip profile-chip-primary">
           <span></span>
           {{ profile.role }}

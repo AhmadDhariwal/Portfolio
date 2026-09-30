@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { profile, timeline } from '../../shared/data/portfolio.data';
 
 @Component({
@@ -7,7 +7,8 @@ import { profile, timeline } from '../../shared/data/portfolio.data';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './experience.component.html',
-  styleUrl: './experience.component.scss'
+  styleUrl: './experience.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ExperienceComponent {
   readonly timeline = timeline;

@@ -25,7 +25,14 @@
       <aside class="education-visual pf-card">
         <div class="education-picture">
           <span class="education-orbit" aria-hidden="true"></span>
-          <img [src]="profile.educationVisual.src" [alt]="profile.educationVisual.alt" loading="lazy" />
+          <img
+            [src]="profile.educationVisual.src"
+            [alt]="profile.educationVisual.alt"
+            loading="lazy"
+            decoding="async"
+            width="720"
+            height="520"
+          />
           <span class="education-badge">Degree</span>
         </div>
         <h3>{{ profile.education }}</h3>

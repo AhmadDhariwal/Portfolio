@@ -1,5 +1,6 @@
 export const portfolioAssets = {
-  profilePhoto: './images/profile/ahmad.png',
+  profilePhoto: './images/profile/ahmad-440.webp',
+  profilePhoto2x: './images/profile/ahmad-720.webp',
   resume: './Ahmad-Hassan-Resume.txt',
   videos: {
     heroBackground: './videos/hero-background.mp4'
@@ -8,7 +9,7 @@ export const portfolioAssets = {
     degreeVisual: './images/education/degree-university.svg'
   },
   projects: {
-    devInsight: './images/projects/devinsightai.png',
+    devInsight: './images/projects/devinsightai-800.webp',
     dealDocks: './images/projects/deal-docks.svg',
     recipeFinder: './images/projects/recipe-finder.svg',
     passwordChecker: './images/projects/password-checker.svg',

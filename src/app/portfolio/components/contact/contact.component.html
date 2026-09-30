@@ -53,9 +53,7 @@
         <textarea name="message" [(ngModel)]="form.message" rows="5" placeholder="Type your message..." required></textarea>
       </label>
       <button class="pf-button pf-button-primary" type="submit">Send Message</button>
-      @if (notice) {
-        <p class="notice">{{ notice }}</p>
-      }
+      <p class="notice" role="status" aria-live="polite">{{ notice }}</p>
     </form>
   </div>
 </section>
