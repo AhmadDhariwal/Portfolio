@@ -1,17 +1,37 @@
 :root {
-  --pf-bg: #030403;
-  --pf-surface: #0c0d0b;
-  --pf-surface-light: rgba(255, 255, 255, 0.06);
-  --pf-border: rgba(245, 239, 226, 0.1);
+  color-scheme: light;
+
+  /* ---- Light theme surfaces & text ---- */
+  --pf-bg: #f4f1ea;
+  --pf-surface: #ffffff;
+  /* Subtle tint used for raised surfaces on the light background. */
+  --pf-surface-light: rgba(24, 22, 17, 0.04);
+  --pf-border: rgba(31, 27, 20, 0.12);
+  --pf-text-main: #221f18;
+  --pf-text-soft: #4a4438;
+  --pf-text-muted: #6c665a;
+  --pf-warm-muted: #7a6b4e;
+
+  /* ---- Brand / accent colors (unchanged) ---- */
   --pf-primary: #d8c7a3;
   --pf-secondary: #86a7b6;
   --pf-purple: #8b7a5b;
-  --pf-text-main: #f5efe2;
-  --pf-text-soft: #cfc6b6;
-  --pf-text-muted: #9b9588;
-  --pf-warm-muted: #b8aa8f;
   --pf-bronze: #a9895d;
   --pf-cyan-dim: #5f7f8d;
+
+  /*
+   * Semantic tokens for panel/card fills and "on-accent" text so the whole
+   * app themes from one place. On the dark theme these were dark fills; on
+   * light they become white/near-white cards with dark text on accents.
+   */
+  --pf-panel: #ffffff;
+  --pf-panel-strong: #ffffff;
+  --pf-panel-veil: rgba(255, 255, 255, 0.82);
+  --pf-tint: rgba(24, 22, 17, 0.04);
+  --pf-tint-strong: rgba(24, 22, 17, 0.07);
+  --pf-on-accent: #2a2418;
+  --pf-shadow: rgba(31, 27, 20, 0.12);
+  --pf-shadow-strong: rgba(31, 27, 20, 0.16);
   --pf-font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
   --pf-font-heading: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
   /*
