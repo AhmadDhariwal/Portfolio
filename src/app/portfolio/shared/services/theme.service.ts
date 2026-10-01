@@ -14,16 +14,37 @@ export class ThemeService {
   constructor() {
     // Ensure the DOM and meta tags match the initial theme state.
     this.applyTheme(this.theme(), false);
+
+    // Listen for OS/system theme changes when user has not saved an explicit override.
+    if (typeof window !== 'undefined' && window.matchMedia) {
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      const handleSystemThemeChange = (e: MediaQueryListEvent) => {
+        try {
+          if (!localStorage.getItem(STORAGE_KEY)) {
+            const systemTheme: ThemeMode = e.matches ? 'dark' : 'light';
+            this.setTheme(systemTheme, false);
+          }
+        } catch {
+          this.setTheme(e.matches ? 'dark' : 'light', false);
+        }
+      };
+
+      if (mediaQuery.addEventListener) {
+        mediaQuery.addEventListener('change', handleSystemThemeChange);
+      } else {
+        mediaQuery.addListener(handleSystemThemeChange);
+      }
+    }
   }
 
   toggleTheme(): void {
     const nextTheme: ThemeMode = this.theme() === 'dark' ? 'light' : 'dark';
-    this.setTheme(nextTheme);
+    this.setTheme(nextTheme, true);
   }
 
-  setTheme(newTheme: ThemeMode): void {
+  setTheme(newTheme: ThemeMode, saveToStorage = true): void {
     this.theme.set(newTheme);
-    this.applyTheme(newTheme, true);
+    this.applyTheme(newTheme, saveToStorage);
   }
 
   private getInitialTheme(): ThemeMode {

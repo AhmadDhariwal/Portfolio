@@ -14,6 +14,19 @@
         {{ link.label }}
       </button>
     }
+
+    <div class="nav-mobile-footer">
+      <div class="nav-mobile-socials">
+        @for (link of socialLinks; track link.label) {
+          <a class="icon-link" [href]="link.href" target="_blank" rel="noreferrer" [attr.aria-label]="link.label">
+            <img [src]="link.icon" [alt]="link.label" />
+          </a>
+        }
+      </div>
+      <a class="pf-button pf-button-primary resume-mobile-btn" [href]="profile.resumeUrl" download>
+        Download Resume
+      </a>
+    </div>
   </nav>
 
   <div class="nav-actions">

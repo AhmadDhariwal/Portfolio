@@ -95,17 +95,20 @@ export class NavbarComponent implements AfterViewInit {
   navigateTo(id: string): void {
     this.activeSection = id;
     this.menuOpen = false;
+    this.cdr.markForCheck();
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   toggleMenu(): void {
     this.menuOpen = !this.menuOpen;
+    this.cdr.markForCheck();
   }
 
   @HostListener('document:keydown.escape')
   onEscape(): void {
     if (this.menuOpen) {
       this.menuOpen = false;
+      this.cdr.markForCheck();
     }
   }
 
@@ -114,6 +117,7 @@ export class NavbarComponent implements AfterViewInit {
     // Prevent a stuck open mobile menu when resizing up to the desktop layout.
     if (this.menuOpen && window.innerWidth > 820) {
       this.menuOpen = false;
+      this.cdr.markForCheck();
     }
   }
 }
