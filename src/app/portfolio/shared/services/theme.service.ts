@@ -3,6 +3,7 @@ import { Injectable, computed, signal } from '@angular/core';
 export type ThemeMode = 'light' | 'dark';
 
 const STORAGE_KEY = 'portfolio-theme';
+const LEGACY_STORAGE_KEY = 'ahmad-portfolio-theme';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class ThemeService {
       const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
       const handleSystemThemeChange = (e: MediaQueryListEvent) => {
         try {
-          if (!localStorage.getItem(STORAGE_KEY)) {
+          if (!localStorage.getItem(STORAGE_KEY) && !localStorage.getItem(LEGACY_STORAGE_KEY)) {
             const systemTheme: ThemeMode = e.matches ? 'dark' : 'light';
             this.setTheme(systemTheme, false);
           }
@@ -60,7 +61,7 @@ export class ThemeService {
 
     // 2. Check localStorage
     try {
-      const stored = localStorage.getItem(STORAGE_KEY);
+      const stored = localStorage.getItem(STORAGE_KEY) || localStorage.getItem(LEGACY_STORAGE_KEY);
       if (stored === 'dark' || stored === 'light') {
         return stored;
       }
