@@ -3,7 +3,7 @@
   top: 16px;
   z-index: 30;
   display: grid;
-  grid-template-columns: auto 1fr auto auto;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 20px;
   width: min(1180px, calc(100% - 32px));
@@ -16,7 +16,7 @@
 
 .navbar-scrolled {
   border-color: var(--pf-border);
-  background: rgba(255, 255, 255, 0.82);
+  background: var(--pf-panel-veil);
   box-shadow: 0 22px 60px var(--pf-shadow);
   backdrop-filter: blur(18px);
 }
@@ -25,7 +25,7 @@
   border: 0;
   background: transparent;
   color: transparent;
-  background-image: linear-gradient(135deg, #7a6b4e, #a9895d 48%, #5f7f8d);
+  background-image: var(--pf-brand-gradient);
   background-clip: text;
   font-family: var(--pf-font-heading);
   font-size: 26px;
@@ -80,6 +80,76 @@
   gap: 10px;
 }
 
+.theme-toggle {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--pf-border);
+  border-radius: 12px;
+  background: var(--pf-glass-bg);
+  box-shadow: 0 2px 6px var(--pf-shadow);
+  color: var(--pf-text-main);
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    transform 200ms var(--pf-ease),
+    border-color 200ms var(--pf-ease),
+    background 200ms var(--pf-ease),
+    box-shadow 200ms var(--pf-ease),
+    color 200ms var(--pf-ease);
+}
+
+.theme-toggle:hover {
+  transform: translateY(-2px);
+  border-color: rgba(169, 137, 93, 0.4);
+  background: var(--pf-surface);
+  box-shadow: 0 4px 12px var(--pf-shadow);
+  color: var(--pf-bronze);
+}
+
+.theme-icon-wrap {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  transition: transform 340ms var(--pf-ease);
+}
+
+.theme-icon {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  transition:
+    opacity 280ms var(--pf-ease),
+    transform 340ms var(--pf-ease);
+}
+
+.sun-icon {
+  color: #facc15;
+  opacity: 0;
+  transform: rotate(90deg) scale(0.5);
+}
+
+.moon-icon {
+  color: var(--pf-warm-muted);
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+.theme-icon-wrap.is-dark .sun-icon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+.theme-icon-wrap.is-dark .moon-icon {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.5);
+}
+
 .icon-link {
   display: grid;
   place-items: center;
@@ -87,7 +157,20 @@
   height: 40px;
   border: 1px solid var(--pf-border);
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--pf-glass-bg);
+  box-shadow: 0 2px 6px var(--pf-shadow);
+  transition:
+    transform 200ms var(--pf-ease),
+    border-color 200ms var(--pf-ease),
+    background 200ms var(--pf-ease),
+    box-shadow 200ms var(--pf-ease);
+}
+
+.icon-link:hover {
+  transform: translateY(-2px);
+  border-color: rgba(169, 137, 93, 0.4);
+  background: var(--pf-surface);
+  box-shadow: 0 4px 12px var(--pf-shadow);
 }
 
 .icon-link img {
@@ -100,6 +183,12 @@
   padding-inline: 18px;
 }
 
+.nav-mobile-controls {
+  display: none;
+  align-items: center;
+  gap: 10px;
+}
+
 .menu-button {
   display: none;
   position: relative;
@@ -107,7 +196,17 @@
   height: 42px;
   border: 1px solid var(--pf-border);
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--pf-glass-bg);
+  box-shadow: 0 2px 6px var(--pf-shadow);
+  cursor: pointer;
+  transition:
+    border-color 200ms var(--pf-ease),
+    background 200ms var(--pf-ease);
+}
+
+.menu-button:hover {
+  border-color: rgba(169, 137, 93, 0.4);
+  background: var(--pf-surface);
 }
 
 .menu-button span {
@@ -117,9 +216,6 @@
   height: 2px;
   border-radius: 2px;
   background: var(--pf-text-main);
-}
-
-.menu-button span {
   transition: transform 200ms var(--pf-ease), opacity 160ms var(--pf-ease);
 }
 
@@ -142,10 +238,6 @@
 }
 
 @media (max-width: 820px) {
-  .navbar {
-    grid-template-columns: auto 1fr auto;
-  }
-
   .nav-links {
     position: fixed;
     inset: 80px 16px auto;
@@ -154,7 +246,7 @@
     padding: 22px;
     border: 1px solid var(--pf-border);
     border-radius: 18px;
-    background: rgba(255, 255, 255, 0.97);
+    background: var(--pf-panel-veil);
     box-shadow: 0 22px 60px var(--pf-shadow);
     backdrop-filter: blur(22px);
     opacity: 0;
@@ -179,6 +271,10 @@
 
   .nav-actions {
     display: none;
+  }
+
+  .nav-mobile-controls {
+    display: flex;
   }
 
   .menu-button {

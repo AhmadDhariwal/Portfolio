@@ -1,45 +1,278 @@
-:root {
+:root,
+[data-theme='light'] {
   color-scheme: light;
 
-  /* ---- Light theme surfaces & text ---- */
+  /* Surfaces & backgrounds */
   --pf-bg: #f4f1ea;
+  --pf-bg-top: #f7f4ee;
+  --pf-bg-mid: #f2eee6;
+  --pf-bg-bottom: #efeae1;
   --pf-surface: #ffffff;
-  /* Subtle tint used for raised surfaces on the light background. */
   --pf-surface-light: rgba(24, 22, 17, 0.04);
   --pf-border: rgba(31, 27, 20, 0.12);
+  --pf-card-border: rgba(31, 27, 20, 0.12);
+  --pf-card-corner: rgba(122, 107, 78, 0.45);
+  --pf-grid-line: rgba(31, 27, 20, 0.04);
+  --pf-host-bg:
+    linear-gradient(180deg, rgba(244, 241, 234, 0.2), rgba(244, 241, 234, 1) 44%),
+    var(--pf-bg);
+
+  /* Typography */
   --pf-text-main: #221f18;
   --pf-text-soft: #4a4438;
   --pf-text-muted: #6c665a;
   --pf-warm-muted: #7a6b4e;
 
-  /* ---- Brand / accent colors (unchanged) ---- */
+  /* Brand / accent colors (consistent across both themes) */
   --pf-primary: #d8c7a3;
   --pf-secondary: #86a7b6;
   --pf-purple: #8b7a5b;
   --pf-bronze: #a9895d;
   --pf-cyan-dim: #5f7f8d;
 
-  /*
-   * Semantic tokens for panel/card fills and "on-accent" text so the whole
-   * app themes from one place. On the dark theme these were dark fills; on
-   * light they become white/near-white cards with dark text on accents.
-   */
+  /* Panels, cards & overlays */
   --pf-panel: #ffffff;
   --pf-panel-strong: #ffffff;
-  --pf-panel-veil: rgba(255, 255, 255, 0.82);
+  --pf-panel-veil: rgba(255, 255, 255, 0.85);
+  --pf-glass-bg: rgba(255, 255, 255, 0.82);
   --pf-tint: rgba(24, 22, 17, 0.04);
   --pf-tint-strong: rgba(24, 22, 17, 0.07);
   --pf-on-accent: #2a2418;
-  --pf-shadow: rgba(31, 27, 20, 0.12);
+  --pf-shadow: rgba(31, 27, 20, 0.08);
   --pf-shadow-strong: rgba(31, 27, 20, 0.16);
+
+  /* Card styling */
+  --pf-card-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.4));
+  --pf-card-inset: rgba(255, 255, 255, 0.6);
+  --pf-card-hover-border: rgba(169, 137, 93, 0.4);
+  --pf-card-hover-shadow: 0 30px 70px rgba(31, 27, 20, 0.16), 0 0 36px rgba(216, 199, 163, 0.18);
+
+  /* Gradient text */
+  --pf-brand-gradient: linear-gradient(135deg, #7a6b4e 0%, #a9895d 48%, #5f7f8d 100%);
+
+  /* Hero & ambient effects */
+  --pf-hero-video-opacity: 0.14;
+  --pf-hero-video-blend: multiply;
+  --pf-hero-video-filter: saturate(0.6) contrast(1.1) brightness(1.2);
+  --pf-hero-grid-opacity: 0.6;
+  --pf-hero-vignette-start: rgba(247, 244, 238, 0.92);
+  --pf-hero-vignette-mid: rgba(247, 244, 238, 0.72);
+  --pf-hero-vignette-end: rgba(247, 244, 238, 0.86);
+  --pf-hero-vignette-bottom: rgba(239, 234, 225, 0.94);
+  --pf-hero-stage-bg: rgba(255, 255, 255, 0.5);
+  --pf-hero-still-bg:
+    radial-gradient(circle at 38% 34%, rgba(216, 199, 163, 0.28), transparent 46%),
+    radial-gradient(circle at 68% 66%, rgba(134, 167, 182, 0.2), transparent 42%),
+    url('/images/hero/space-mountains-light.svg') center / cover no-repeat,
+    #f4f1ea;
+  --pf-hero-glow-node: #a9895d;
+  --pf-hero-glow-shadow: rgba(169, 137, 93, 0.7);
+  --pf-hero-title-shadow: 0 1px 3px rgba(31, 27, 20, 0.08), 0 0 32px rgba(216, 199, 163, 0.16);
+  --pf-hero-motion-shadow: 0 30px 80px var(--pf-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+
+  /* Project stage tokens */
+  --pf-stage-bg:
+    linear-gradient(var(--pf-grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--pf-grid-line) 1px, transparent 1px),
+    radial-gradient(circle at 50% 50%, rgba(216, 199, 163, 0.16), transparent 50%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.72) 0%, rgba(247, 244, 238, 0.5) 100%),
+    var(--pf-bg);
+  --pf-stage-before:
+    radial-gradient(circle at 48% 38%, rgba(216, 199, 163, 0.22), transparent 35%),
+    radial-gradient(circle at 50% 82%, rgba(134, 167, 182, 0.14), transparent 40%),
+    linear-gradient(90deg, rgba(244, 241, 234, 0.6) 0%, transparent 25%, transparent 75%, rgba(244, 241, 234, 0.6) 100%);
+  --pf-stage-after-shadow: inset 0 0 80px rgba(31, 27, 20, 0.04);
+  --pf-stage-border: var(--pf-border);
+  --pf-stage-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 30px 80px var(--pf-shadow);
+  --pf-stage-card-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.88)), var(--pf-surface);
+  --pf-stage-card-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 24px 60px var(--pf-shadow);
+  --pf-stage-card-hover-shadow: 0 36px 90px var(--pf-shadow-strong), 0 0 36px rgba(216, 199, 163, 0.2);
+  --pf-filter-btn-bg: rgba(255, 255, 255, 0.85);
+  --pf-filter-btn-dot: rgba(108, 102, 90, 0.35);
+  --pf-project-img-bg: #e8e3d8;
+
+  /* About section tokens */
+  --pf-about-copy-bg:
+    radial-gradient(circle at 10% 10%, rgba(216, 199, 163, 0.14), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.3)),
+    var(--pf-panel);
+  --pf-compact-card-bg:
+    linear-gradient(135deg, rgba(216, 199, 163, 0.1), rgba(95, 127, 141, 0.05)),
+    var(--pf-panel);
+  --pf-profile-chip-dot: #4caf50;
+  --pf-profile-chip-dot-shadow: 0 0 12px rgba(76, 175, 80, 0.55);
+
+  /* Experience section tokens */
+  --pf-education-visual-bg:
+    radial-gradient(circle at 50% 24%, rgba(216, 199, 163, 0.18), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.3)),
+    var(--pf-panel);
+  --pf-education-img-shadow: 0 24px 60px var(--pf-shadow-strong), 0 0 44px rgba(216, 199, 163, 0.16);
+
+  /* Skills section tokens */
+  --pf-orb-bg:
+    radial-gradient(circle at 30% 22%, rgba(255, 255, 255, 0.95), transparent 45%),
+    color-mix(in srgb, var(--skill-color) 14%, var(--pf-surface));
+  --pf-orb-border: color-mix(in srgb, var(--skill-color) 45%, var(--pf-border));
+  --pf-orb-shadow: 0 12px 28px var(--pf-shadow), 0 0 24px color-mix(in srgb, var(--skill-color) 18%, transparent);
+  --pf-orb-ring-border: color-mix(in srgb, var(--skill-color) 35%, var(--pf-border));
+
+  /* Contact section tokens */
+  --pf-input-bg: var(--pf-surface);
+  --pf-input-border: var(--pf-border);
+  --pf-notice-color: #6d28d9;
+
+  /* Body glows */
+  --pf-body-radial-top: rgba(216, 199, 163, 0.16);
+  --pf-body-radial-mid: rgba(95, 127, 141, 0.12);
+  --pf-body-radial-bot1: rgba(168, 137, 93, 0.1);
+  --pf-body-radial-bot2: rgba(95, 127, 141, 0.08);
+
+  /* Selection */
+  --pf-selection-bg: rgba(216, 199, 163, 0.45);
+  --pf-selection-color: #221f18;
+
+  /* Typography / sizing constants */
   --pf-font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
   --pf-font-heading: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
-  /*
-   * Fluid type: scales smoothly between the previous fixed breakpoint values
-   * (hero 44 -> 86px, section 32 -> 48px) instead of jumping at 560/900px.
-   */
   --pf-hero-title: clamp(2.75rem, 6vw + 1rem, 5.375rem);
   --pf-section-title: clamp(2rem, 2.2vw + 1.25rem, 3rem);
   --pf-radius: 24px;
   --pf-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  /* Surfaces & backgrounds */
+  --pf-bg: #030403;
+  --pf-bg-top: #020302;
+  --pf-bg-mid: #050604;
+  --pf-bg-bottom: #030403;
+  --pf-surface: #0c0d0b;
+  --pf-surface-light: rgba(255, 255, 255, 0.06);
+  --pf-border: rgba(245, 239, 226, 0.1);
+  --pf-card-border: rgba(245, 239, 226, 0.1);
+  --pf-card-corner: rgba(216, 199, 163, 0.38);
+  --pf-grid-line: rgba(255, 255, 255, 0.035);
+  --pf-host-bg:
+    linear-gradient(180deg, rgba(3, 4, 3, 0.2), rgba(3, 4, 3, 1) 44%),
+    var(--pf-bg);
+
+  /* Typography */
+  --pf-text-main: #f5efe2;
+  --pf-text-soft: #cfc6b6;
+  --pf-text-muted: #9b9588;
+  --pf-warm-muted: #b8aa8f;
+
+  /* Brand / accent colors (consistent across both themes) */
+  --pf-primary: #d8c7a3;
+  --pf-secondary: #86a7b6;
+  --pf-purple: #8b7a5b;
+  --pf-bronze: #a9895d;
+  --pf-cyan-dim: #5f7f8d;
+
+  /* Panels, cards & overlays */
+  --pf-panel: #0c0d0b;
+  --pf-panel-strong: #121410;
+  --pf-panel-veil: rgba(12, 13, 11, 0.82);
+  --pf-glass-bg: rgba(12, 13, 11, 0.82);
+  --pf-tint: rgba(255, 255, 255, 0.04);
+  --pf-tint-strong: rgba(255, 255, 255, 0.08);
+  --pf-on-accent: #0c0d0b;
+  --pf-shadow: rgba(0, 0, 0, 0.42);
+  --pf-shadow-strong: rgba(0, 0, 0, 0.68);
+
+  /* Card styling */
+  --pf-card-bg: linear-gradient(180deg, rgba(245, 239, 226, 0.06), rgba(245, 239, 226, 0.018));
+  --pf-card-inset: rgba(255, 255, 255, 0.035);
+  --pf-card-hover-border: rgba(216, 199, 163, 0.28);
+  --pf-card-hover-shadow: 0 36px 96px rgba(0, 0, 0, 0.42), 0 0 36px rgba(216, 199, 163, 0.1);
+
+  /* Gradient text */
+  --pf-brand-gradient: linear-gradient(135deg, #ffffff 0%, #d8c7a3 48%, #86a7b6 100%);
+
+  /* Hero & ambient effects */
+  --pf-hero-video-opacity: 0.42;
+  --pf-hero-video-blend: normal;
+  --pf-hero-video-filter: saturate(0.72) contrast(1.12) brightness(0.7);
+  --pf-hero-grid-opacity: 0.42;
+  --pf-hero-vignette-start: rgba(2, 3, 7, 0.94);
+  --pf-hero-vignette-mid: rgba(2, 3, 7, 0.7);
+  --pf-hero-vignette-end: rgba(2, 3, 7, 0.62);
+  --pf-hero-vignette-bottom: rgba(2, 3, 7, 0.96);
+  --pf-hero-stage-bg: rgba(255, 255, 255, 0.028);
+  --pf-hero-still-bg:
+    radial-gradient(circle at 38% 34%, rgba(216, 199, 163, 0.28), transparent 46%),
+    radial-gradient(circle at 68% 66%, rgba(134, 167, 182, 0.24), transparent 42%),
+    url('/images/hero/space-mountains-dark.svg') center / cover no-repeat,
+    #05070d;
+  --pf-hero-glow-node: #f5efe2;
+  --pf-hero-glow-shadow: rgba(216, 199, 163, 0.75);
+  --pf-hero-title-shadow: 0 2px 24px rgba(0, 0, 0, 0.72), 0 0 40px rgba(216, 199, 163, 0.12);
+  --pf-hero-motion-shadow: 0 34px 110px rgba(0, 0, 0, 0.46), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+  /* Project stage tokens */
+  --pf-stage-bg:
+    linear-gradient(rgba(245, 239, 226, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 239, 226, 0.026) 1px, transparent 1px),
+    radial-gradient(circle at 50% 58%, rgba(216, 199, 163, 0.13), transparent 30%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0.01)),
+    #030403;
+  --pf-stage-before:
+    radial-gradient(circle at 48% 38%, rgba(245, 239, 226, 0.18), transparent 18%),
+    radial-gradient(circle at 50% 82%, rgba(134, 167, 182, 0.11), transparent 28%),
+    linear-gradient(90deg, rgba(2, 3, 7, 0.72), transparent 40%, rgba(2, 3, 7, 0.72));
+  --pf-stage-after-shadow: inset 0 0 140px rgba(0, 0, 0, 0.72);
+  --pf-stage-border: rgba(245, 239, 226, 0.06);
+  --pf-stage-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035), 0 38px 120px rgba(0, 0, 0, 0.42);
+  --pf-stage-card-bg:
+    linear-gradient(180deg, rgba(245, 239, 226, 0.052), rgba(245, 239, 226, 0.018)),
+    rgba(12, 13, 11, 0.88);
+  --pf-stage-card-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035), 0 28px 84px rgba(0, 0, 0, 0.45);
+  --pf-stage-card-hover-shadow: 0 40px 100px rgba(216, 199, 163, 0.12);
+  --pf-filter-btn-bg: rgba(255, 255, 255, 0.045);
+  --pf-filter-btn-dot: rgba(245, 239, 226, 0.28);
+  --pf-project-img-bg: #070b18;
+
+  /* About section tokens */
+  --pf-about-copy-bg:
+    radial-gradient(circle at 10% 10%, rgba(216, 199, 163, 0.12), transparent 34%),
+    linear-gradient(180deg, rgba(245, 239, 226, 0.058), rgba(245, 239, 226, 0.015)),
+    rgba(12, 13, 11, 0.78);
+  --pf-compact-card-bg:
+    linear-gradient(135deg, rgba(245, 239, 226, 0.055), rgba(95, 127, 141, 0.02)),
+    rgba(12, 13, 11, 0.66);
+  --pf-profile-chip-dot: #9ee685;
+  --pf-profile-chip-dot-shadow: 0 0 16px rgba(158, 230, 133, 0.72);
+
+  /* Experience section tokens */
+  --pf-education-visual-bg:
+    radial-gradient(circle at 50% 24%, rgba(216, 199, 163, 0.16), transparent 34%),
+    linear-gradient(180deg, rgba(245, 239, 226, 0.055), rgba(245, 239, 226, 0.016)),
+    rgba(12, 13, 11, 0.68);
+  --pf-education-img-shadow: 0 28px 86px rgba(0, 0, 0, 0.38), 0 0 44px rgba(216, 199, 163, 0.08);
+
+  /* Skills section tokens */
+  --pf-orb-bg:
+    radial-gradient(circle at 30% 22%, rgba(255, 255, 255, 0.2), transparent 38%),
+    color-mix(in srgb, var(--skill-color) 20%, rgba(255, 255, 255, 0.04));
+  --pf-orb-border: color-mix(in srgb, var(--skill-color) 42%, rgba(255, 255, 255, 0.12));
+  --pf-orb-shadow: 0 0 30px color-mix(in srgb, var(--skill-color) 16%, transparent);
+  --pf-orb-ring-border: color-mix(in srgb, var(--skill-color) 32%, rgba(255, 255, 255, 0.1));
+
+  /* Contact section tokens */
+  --pf-input-bg: rgba(5, 8, 22, 0.66);
+  --pf-input-border: rgba(255, 255, 255, 0.12);
+  --pf-notice-color: #c4b5fd;
+
+  /* Body glows */
+  --pf-body-radial-top: rgba(216, 199, 163, 0.1);
+  --pf-body-radial-mid: rgba(95, 127, 141, 0.12);
+  --pf-body-radial-bot1: rgba(168, 137, 93, 0.14);
+  --pf-body-radial-bot2: rgba(95, 127, 141, 0.12);
+
+  /* Selection */
+  --pf-selection-bg: rgba(216, 199, 163, 0.34);
+  --pf-selection-color: #ffffff;
 }

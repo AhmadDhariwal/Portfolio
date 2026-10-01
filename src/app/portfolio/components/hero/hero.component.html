@@ -8,7 +8,7 @@
     [attr.preload]="skipHeroVideo ? 'none' : 'metadata'"
     [muted]="true"
     (loadedmetadata)="muteVideo($event)"
-    poster="./images/hero/space-mountains.svg"
+    [poster]="posterSrc()"
     aria-hidden="true"
   >
     @if (!skipHeroVideo) {

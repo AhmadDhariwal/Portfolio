@@ -7,8 +7,10 @@ import {
   HostListener,
   NgZone,
   ViewChild,
+  effect,
   inject
 } from '@angular/core';
+import { ThemeService } from '../../shared/services/theme.service';
 
 @Component({
   selector: 'app-three-scene',
@@ -22,14 +24,20 @@ export class ThreeSceneComponent implements AfterViewInit {
 
   private readonly destroyRef = inject(DestroyRef);
   private readonly ngZone = inject(NgZone);
+  private readonly themeService = inject(ThemeService);
   private renderer?: import('three').WebGLRenderer;
   private sceneObjects?: {
     scene: import('three').Scene;
     camera: import('three').PerspectiveCamera;
     crystal: import('three').Mesh;
+    crystalMaterial: import('three').MeshPhysicalMaterial;
+    edges: import('three').LineSegments;
     ringOne: import('three').Mesh;
     ringTwo: import('three').Mesh;
     particles: import('three').Points;
+    ambientLight: import('three').AmbientLight;
+    pointLightA: import('three').PointLight;
+    pointLightB: import('three').PointLight;
   };
   private animationFrameId = 0;
   private running = false;
@@ -38,6 +46,16 @@ export class ThreeSceneComponent implements AfterViewInit {
   private intersectionObserver?: IntersectionObserver;
   private pointer = { x: 0, y: 0 };
   private target = { x: 0, y: 0 };
+
+  constructor() {
+    effect(() => {
+      const isDark = this.themeService.isDark();
+      this.updateThemeVisuals(isDark);
+      if (!this.running) {
+        this.renderFrame();
+      }
+    });
+  }
 
   async ngAfterViewInit(): Promise<void> {
     if (typeof window === 'undefined') {
@@ -163,19 +181,19 @@ export class ThreeSceneComponent implements AfterViewInit {
       powerPreference: 'low-power'
     });
     renderer.setPixelRatio(this.getPixelRatio());
-    renderer.setClearColor(0x000000, 0);
+    renderer.setClearColor(0xf4f1ea, 0);
 
     const crystalGeometry = new THREE.IcosahedronGeometry(1.58, 1);
     const crystalMaterial = new THREE.MeshPhysicalMaterial({
-      color: 0xd8c7a3,
-      metalness: 0.18,
-      roughness: 0.1,
-      transmission: 0.84,
-      thickness: 1.7,
+      color: 0xc4af83,
+      metalness: 0.28,
+      roughness: 0.12,
+      transmission: 0.65,
+      thickness: 1.8,
       clearcoat: 1,
       clearcoatRoughness: 0.08,
       transparent: true,
-      opacity: 0.86
+      opacity: 0.94
     });
     const crystal = new THREE.Mesh(crystalGeometry, crystalMaterial);
     crystal.rotation.set(0.55, 0.35, 0.18);
@@ -183,11 +201,11 @@ export class ThreeSceneComponent implements AfterViewInit {
     const edgeGeometry = new THREE.EdgesGeometry(crystalGeometry);
     const edges = new THREE.LineSegments(
       edgeGeometry,
-      new THREE.LineBasicMaterial({ color: 0x83d7ff, transparent: true, opacity: 0.8 })
+      new THREE.LineBasicMaterial({ color: 0x5f7f8d, transparent: true, opacity: 0.55 })
     );
     crystal.add(edges);
 
-    const ringMaterial = new THREE.MeshBasicMaterial({ color: 0x86a7b6, transparent: true, opacity: 0.72 });
+    const ringMaterial = new THREE.MeshBasicMaterial({ color: 0x86a7b6, transparent: true, opacity: 0.85 });
     const ringOne = new THREE.Mesh(new THREE.TorusGeometry(2.42, 0.023, 16, 160), ringMaterial);
     const ringTwo = new THREE.Mesh(new THREE.TorusGeometry(2.08, 0.017, 16, 160), ringMaterial.clone());
     ringOne.rotation.set(1.08, 0.34, 0.18);
@@ -205,19 +223,32 @@ export class ThreeSceneComponent implements AfterViewInit {
     particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     const particles = new THREE.Points(
       particleGeometry,
-      new THREE.PointsMaterial({ color: 0xc4b5fd, size: 0.065, transparent: true, opacity: 0.72 })
+      new THREE.PointsMaterial({ color: 0xa9895d, size: 0.065, transparent: true, opacity: 0.75 })
     );
 
-    const ambientLight = new THREE.AmbientLight(0xb7c6ff, 1.4);
-    const pointLightA = new THREE.PointLight(0x7dd3fc, 13, 20);
-    const pointLightB = new THREE.PointLight(0xa855f7, 16, 20);
+    const ambientLight = new THREE.AmbientLight(0xfffbf2, 2.2);
+    const pointLightA = new THREE.PointLight(0xd8c7a3, 14, 20);
+    const pointLightB = new THREE.PointLight(0x86a7b6, 12, 20);
     pointLightA.position.set(4, 4, 4);
     pointLightB.position.set(-4, -2, 3);
 
     scene.add(ambientLight, pointLightA, pointLightB, crystal, ringOne, ringTwo, particles);
 
     this.renderer = renderer;
-    this.sceneObjects = { scene, camera, crystal, ringOne, ringTwo, particles };
+    this.sceneObjects = {
+      scene,
+      camera,
+      crystal,
+      crystalMaterial,
+      edges,
+      ringOne,
+      ringTwo,
+      particles,
+      ambientLight,
+      pointLightA,
+      pointLightB
+    };
+    this.updateThemeVisuals(this.themeService.isDark());
     this.resize();
 
     this.destroyRef.onDestroy(() => {
@@ -235,6 +266,48 @@ export class ThreeSceneComponent implements AfterViewInit {
       particleGeometry.dispose();
       (particles.material as import('three').Material).dispose();
     });
+  }
+
+  private updateThemeVisuals(isDark: boolean): void {
+    if (!this.sceneObjects) {
+      return;
+    }
+
+    const { ambientLight, pointLightA, pointLightB, crystalMaterial, edges, particles } =
+      this.sceneObjects;
+
+    if (isDark) {
+      ambientLight.color.setHex(0xb7c6ff);
+      ambientLight.intensity = 1.4;
+      pointLightA.color.setHex(0x7dd3fc);
+      pointLightA.intensity = 13;
+      pointLightB.color.setHex(0xa855f7);
+      pointLightB.intensity = 16;
+      crystalMaterial.color.setHex(0xd8c7a3);
+      crystalMaterial.metalness = 0.18;
+      crystalMaterial.roughness = 0.1;
+      crystalMaterial.transmission = 0;
+      crystalMaterial.opacity = 0.86;
+      (edges.material as import('three').LineBasicMaterial).color.setHex(0x7dd3fc);
+      (particles.material as import('three').PointsMaterial).color.setHex(0xc4b5fd);
+      (particles.material as import('three').PointsMaterial).opacity = 0.72;
+    } else {
+      ambientLight.color.setHex(0xfffbf2);
+      ambientLight.intensity = 2.2;
+      pointLightA.color.setHex(0xd8c7a3);
+      pointLightA.intensity = 14;
+      pointLightB.color.setHex(0x86a7b6);
+      pointLightB.intensity = 12;
+      crystalMaterial.color.setHex(0xc4af83);
+      crystalMaterial.metalness = 0.28;
+      crystalMaterial.roughness = 0.12;
+      crystalMaterial.transmission = 0.65;
+      crystalMaterial.thickness = 1.8;
+      crystalMaterial.opacity = 0.94;
+      (edges.material as import('three').LineBasicMaterial).color.setHex(0x5f7f8d);
+      (particles.material as import('three').PointsMaterial).color.setHex(0xa9895d);
+      (particles.material as import('three').PointsMaterial).opacity = 0.75;
+    }
   }
 
   private getPixelRatio(): number {

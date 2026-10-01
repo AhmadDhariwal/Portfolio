@@ -2,7 +2,7 @@
   position: relative;
   z-index: 1;
   padding: 34px 0 26px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--pf-border);
 }
 
 .footer-grid {
@@ -16,7 +16,7 @@
   border: 0;
   background: transparent;
   color: transparent;
-  background-image: linear-gradient(135deg, #7a6b4e, #a9895d 48%, #5f7f8d);
+  background-image: var(--pf-brand-gradient);
   background-clip: text;
   font-family: var(--pf-font-heading);
   font-size: 28px;
@@ -55,7 +55,8 @@ nav button {
   padding: 0 12px;
   border: 1px solid var(--pf-border);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--pf-glass-bg);
+  box-shadow: 0 2px 6px var(--pf-shadow);
   color: var(--pf-text-muted);
   font-size: 12px;
   text-decoration: none;
@@ -63,13 +64,15 @@ nav button {
     transform 220ms var(--pf-ease),
     border-color 220ms var(--pf-ease),
     color 220ms var(--pf-ease),
-    background 220ms var(--pf-ease);
+    background 220ms var(--pf-ease),
+    box-shadow 220ms var(--pf-ease);
 }
 
 .footer-socials a:hover {
   transform: translateY(-4px);
-  border-color: rgba(216, 199, 163, 0.32);
-  background: rgba(245, 239, 226, 0.08);
+  border-color: rgba(169, 137, 93, 0.4);
+  background: var(--pf-surface);
+  box-shadow: 0 6px 16px var(--pf-shadow);
   color: var(--pf-text-main);
 }
 

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <rect width="1200" height="675" rx="36" fill="#050816"/>
+  <path d="M0 515 220 360l150 90 180-170 170 210 140-80 340 190v75H0Z" fill="#0b1020"/>
+  <circle cx="820" cy="240" r="150" fill="#6d5dfb" opacity=".16"/>
+  <path d="M742 158 878 114l98 118-72 158-164 38-96-130z" fill="#6d5dfb" opacity=".52" stroke="#38bdf8" stroke-width="7"/>
+  <ellipse cx="810" cy="270" rx="250" ry="78" fill="none" stroke="#8b5cf6" stroke-width="8" transform="rotate(-22 810 270)"/>
+  <text x="86" y="222" fill="#f8fafc" font-family="Arial" font-size="74" font-weight="700">Ahmad</text>
+  <text x="86" y="306" fill="#8b5cf6" font-family="Arial" font-size="74" font-weight="700">Hassan</text>
+  <text x="90" y="366" fill="#94a3b8" font-family="Arial" font-size="28">Full Stack Developer</text>
+</svg>

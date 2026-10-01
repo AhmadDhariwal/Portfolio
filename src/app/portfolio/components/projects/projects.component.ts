@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { projectFilters, projects } from '../../shared/data/portfolio.data';
 import { Project, ProjectFilter } from '../../shared/models/portfolio.models';
+import { ThemeService } from '../../shared/services/theme.service';
 
 const ROTATE_INTERVAL_MS = 6500;
 
@@ -27,6 +28,7 @@ export class ProjectsComponent implements AfterViewInit {
   private readonly ngZone = inject(NgZone);
   private readonly cdr = inject(ChangeDetectorRef);
   private readonly host = inject(ElementRef<HTMLElement>);
+  readonly themeService = inject(ThemeService);
 
   private rotateTimerId?: number;
   private isVisible = false;
@@ -40,6 +42,15 @@ export class ProjectsComponent implements AfterViewInit {
   readonly projects = projects;
   selectedFilter: ProjectFilter = 'All';
   activeIndex = 0;
+
+  getProjectImage(src: string): string {
+    if (!src.endsWith('.svg')) {
+      return src;
+    }
+    const isDark = this.themeService.isDark();
+    const themeSuffix = isDark ? '-dark.svg' : '-light.svg';
+    return src.replace(/(-dark|-light)?\.svg$/, themeSuffix);
+  }
 
   ngAfterViewInit(): void {
     if (typeof window === 'undefined' || this.reduceMotion) {

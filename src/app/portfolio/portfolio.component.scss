@@ -3,9 +3,7 @@
   min-height: 100vh;
   overflow-x: clip;
   color: var(--pf-text-main);
-  background:
-    linear-gradient(180deg, rgba(244, 241, 234, 0.2), rgba(244, 241, 234, 1) 44%),
-    var(--pf-bg);
+  background: var(--pf-host-bg);
 }
 
 .portfolio-page {

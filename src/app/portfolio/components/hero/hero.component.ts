@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { heroStack, profile, socialLinks } from '../../shared/data/portfolio.data';
+import { ThemeService } from '../../shared/services/theme.service';
 import { ThreeSceneComponent } from '../three-scene/three-scene.component';
 
 @Component({
@@ -12,9 +13,17 @@ import { ThreeSceneComponent } from '../three-scene/three-scene.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeroComponent {
+  private readonly themeService = inject(ThemeService);
+
   readonly profile = profile;
   readonly heroStack = heroStack;
   readonly socialLinks = socialLinks;
+
+  readonly posterSrc = computed(() =>
+    this.themeService.isDark()
+      ? './images/hero/space-mountains-dark.svg'
+      : './images/hero/space-mountains-light.svg'
+  );
 
   /**
    * When the user prefers reduced motion we skip the autoplaying background
