@@ -10,6 +10,7 @@ import {
   inject
 } from '@angular/core';
 import { navLinks, profile, socialLinks } from '../../shared/data/portfolio.data';
+import { ThemeService } from '../../shared/services/theme.service';
 
 @Component({
   selector: 'app-navbar',
@@ -23,6 +24,7 @@ export class NavbarComponent implements AfterViewInit {
   private readonly ngZone = inject(NgZone);
   private readonly cdr = inject(ChangeDetectorRef);
   private readonly destroyRef = inject(DestroyRef);
+  readonly themeService = inject(ThemeService);
 
   readonly profile = profile;
   readonly navLinks = navLinks;
@@ -31,6 +33,10 @@ export class NavbarComponent implements AfterViewInit {
   activeSection = 'home';
   menuOpen = false;
   scrolled = false;
+
+  toggleTheme(): void {
+    this.themeService.toggleTheme();
+  }
 
   private ticking = false;
 
@@ -89,17 +95,20 @@ export class NavbarComponent implements AfterViewInit {
   navigateTo(id: string): void {
     this.activeSection = id;
     this.menuOpen = false;
+    this.cdr.markForCheck();
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   toggleMenu(): void {
     this.menuOpen = !this.menuOpen;
+    this.cdr.markForCheck();
   }
 
   @HostListener('document:keydown.escape')
   onEscape(): void {
     if (this.menuOpen) {
       this.menuOpen = false;
+      this.cdr.markForCheck();
     }
   }
 
@@ -108,6 +117,7 @@ export class NavbarComponent implements AfterViewInit {
     // Prevent a stuck open mobile menu when resizing up to the desktop layout.
     if (this.menuOpen && window.innerWidth > 820) {
       this.menuOpen = false;
+      this.cdr.markForCheck();
     }
   }
 }

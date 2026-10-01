@@ -9,7 +9,38 @@
     name="description"
     content="Premium portfolio for Ahmad Hassan, a full stack developer focused on Angular, Node.js, AI-powered products, and polished web experiences."
   >
-  <meta name="theme-color" content="#050816">
+  <meta name="author" content="Ahmad Hassan">
+  <link rel="canonical" href="https://ahmaddhariwal.github.io/">
+
+  <!-- Open Graph / Facebook / LinkedIn -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ahmaddhariwal.github.io/">
+  <meta property="og:title" content="Ahmad Hassan | Full Stack Developer">
+  <meta property="og:description" content="Portfolio of Ahmad Hassan — Full stack developer focused on Angular, Node.js, Express, MongoDB, AWS, and AI products.">
+  <meta property="og:image" content="./images/profile/ahmad-720.webp">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ahmad Hassan | Full Stack Developer">
+  <meta name="twitter:description" content="Portfolio of Ahmad Hassan — Full stack developer focused on Angular, Node.js, Express, MongoDB, AWS, and AI products.">
+  <meta name="twitter:image" content="./images/profile/ahmad-720.webp">
+
+  <meta name="theme-color" content="#f4f1ea">
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('portfolio-theme') || localStorage.getItem('ahmad-portfolio-theme');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = stored === 'dark' || stored === 'light' ? stored : (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.style.colorScheme = theme;
+        var bg = theme === 'dark' ? '#030403' : '#f4f1ea';
+        document.documentElement.style.backgroundColor = bg;
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', bg);
+      } catch (e) {}
+    })();
+  </script>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

@@ -7,10 +7,13 @@ import {
   DestroyRef,
   ElementRef,
   NgZone,
-  inject
+  computed,
+  inject,
+  signal
 } from '@angular/core';
 import { projectFilters, projects } from '../../shared/data/portfolio.data';
 import { Project, ProjectFilter } from '../../shared/models/portfolio.models';
+import { ThemeService } from '../../shared/services/theme.service';
 
 const ROTATE_INTERVAL_MS = 6500;
 
@@ -27,6 +30,7 @@ export class ProjectsComponent implements AfterViewInit {
   private readonly ngZone = inject(NgZone);
   private readonly cdr = inject(ChangeDetectorRef);
   private readonly host = inject(ElementRef<HTMLElement>);
+  readonly themeService = inject(ThemeService);
 
   private rotateTimerId?: number;
   private isVisible = false;
@@ -38,8 +42,46 @@ export class ProjectsComponent implements AfterViewInit {
 
   readonly projectFilters = projectFilters;
   readonly projects = projects;
-  selectedFilter: ProjectFilter = 'All';
-  activeIndex = 0;
+
+  private readonly selectedFilterSignal = signal<ProjectFilter>('All');
+  private readonly activeIndexSignal = signal<number>(0);
+
+  readonly filteredProjectsSignal = computed<Project[]>(() => {
+    const filter = this.selectedFilterSignal();
+    return filter === 'All'
+      ? this.projects
+      : this.projects.filter((project) => project.filters.includes(filter));
+  });
+
+  get selectedFilter(): ProjectFilter {
+    return this.selectedFilterSignal();
+  }
+
+  get activeIndex(): number {
+    return this.activeIndexSignal();
+  }
+
+  get filteredProjects(): Project[] {
+    return this.filteredProjectsSignal();
+  }
+
+  get activeProject(): Project {
+    const list = this.filteredProjectsSignal();
+    return list[this.activeIndexSignal()] ?? list[0] ?? this.projects[0];
+  }
+
+  get stagedProjects(): Project[] {
+    return this.filteredProjectsSignal().slice(0, 5);
+  }
+
+  getProjectImage(src: string): string {
+    if (!src.endsWith('.svg')) {
+      return src;
+    }
+    const isDark = this.themeService.isDark();
+    const themeSuffix = isDark ? '-dark.svg' : '-light.svg';
+    return src.replace(/(-dark|-light)?\.svg$/, themeSuffix);
+  }
 
   ngAfterViewInit(): void {
     if (typeof window === 'undefined' || this.reduceMotion) {
@@ -117,46 +159,35 @@ export class ProjectsComponent implements AfterViewInit {
     this.syncTimer();
   }
 
-  get filteredProjects(): Project[] {
-    return this.selectedFilter === 'All'
-      ? this.projects
-      : this.projects.filter((project) => project.filters.includes(this.selectedFilter));
-  }
-
-  get activeProject(): Project {
-    return this.filteredProjects[this.activeIndex] ?? this.filteredProjects[0] ?? this.projects[0];
-  }
-
-  get stagedProjects(): Project[] {
-    return this.filteredProjects.slice(0, 5);
-  }
-
   setFilter(filter: ProjectFilter): void {
-    this.selectedFilter = filter;
-    this.activeIndex = 0;
+    this.selectedFilterSignal.set(filter);
+    this.activeIndexSignal.set(0);
+    this.cdr.markForCheck();
   }
 
   setActive(index: number): void {
-    this.activeIndex = index;
+    this.activeIndexSignal.set(index);
+    this.cdr.markForCheck();
   }
 
   shuffleProjects(): void {
-    const total = this.filteredProjects.length;
+    const total = this.filteredProjectsSignal().length;
     if (!total) {
       return;
     }
 
-    this.activeIndex = (this.activeIndex + 1) % total;
+    this.activeIndexSignal.update((idx) => (idx + 1) % total);
     this.cdr.markForCheck();
   }
 
   previousProject(): void {
-    const total = this.filteredProjects.length;
+    const total = this.filteredProjectsSignal().length;
     if (!total) {
       return;
     }
 
-    this.activeIndex = (this.activeIndex - 1 + total) % total;
+    this.activeIndexSignal.update((idx) => (idx - 1 + total) % total);
+    this.cdr.markForCheck();
   }
 
   nextProject(): void {
@@ -164,17 +195,19 @@ export class ProjectsComponent implements AfterViewInit {
   }
 
   getStageClass(index: number): string {
-    const relativeIndex = index - this.activeIndex;
+    const active = this.activeIndexSignal();
+    const total = this.filteredProjectsSignal().length;
+    const relativeIndex = index - active;
 
     if (relativeIndex === 0) {
       return 'stage-card active';
     }
 
-    if (relativeIndex === -1 || relativeIndex === this.filteredProjects.length - 1) {
+    if (relativeIndex === -1 || relativeIndex === total - 1) {
       return 'stage-card side left';
     }
 
-    if (relativeIndex === 1 || relativeIndex === -(this.filteredProjects.length - 1)) {
+    if (relativeIndex === 1 || relativeIndex === -(total - 1)) {
       return 'stage-card side right';
     }
 

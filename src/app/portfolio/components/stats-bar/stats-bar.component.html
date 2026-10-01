@@ -3,7 +3,7 @@
     @for (stat of stats; track stat.label) {
       <article class="stat-item pf-card">
         <div class="stat-icon">
-          <img title="label" [src]="stat.icon" [alt]="stat.label" />
+          <img [title]="stat.label" [src]="stat.icon" [alt]="stat.label" />
         </div>
         <div class="stat-text">
           <strong>{{ stat.value }}</strong>
