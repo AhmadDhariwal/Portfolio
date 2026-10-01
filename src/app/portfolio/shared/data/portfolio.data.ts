@@ -177,7 +177,7 @@ export const timeline: TimelineItem[] = [
     title: 'Associate Software Engineer',
     company: 'iCommunix',
     description:
-      'Building full-stack web apps with Angular, Node.js, Express.js, MongoDB, MySQL, and AWS. Developing scalable APIs, reusable components, and responsive UIs while collaborating in Agile sprints and contributing to enterprise communication solutions.Work with AWS services including Lambda, API Gateway, S3, and connect for cloud-based application development.Optimize application performance, maintain code quality, and participate in code reviews.'
+      'Building full-stack web apps with Angular, Node.js, Express.js, MongoDB, MySQL, and AWS. Developing scalable APIs, reusable components, and responsive UIs while collaborating in Agile sprints and contributing to enterprise communication solutions. Work with AWS services including Lambda, API Gateway, S3, and connect for cloud-based application development. Optimize application performance, maintain code quality, and participate in code reviews.'
   },
   {
     period: 'Nov 2025 – Feb 2026',

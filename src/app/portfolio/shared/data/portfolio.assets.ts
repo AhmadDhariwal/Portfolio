@@ -12,8 +12,7 @@ export const portfolioAssets = {
     devInsight: './images/projects/devinsightai-800.webp',
     dealDocks: './images/projects/deal-docks.svg',
     recipeFinder: './images/projects/recipe-finder.svg',
-    passwordChecker: './images/projects/password-checker.svg',
-    portfolio: './images/projects/personal-portfolio.svg'
+    passwordChecker: './images/projects/password-checker.svg'
   },
   icons: {
     social: {
