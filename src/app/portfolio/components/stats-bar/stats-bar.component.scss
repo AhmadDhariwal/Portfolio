@@ -52,13 +52,15 @@
 strong {
   color: var(--pf-text-main);
   font-family: var(--pf-font-heading);
-  font-size: 25px;
-  line-height: 1;
+  font-size: 1.625rem;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 span {
   color: var(--pf-text-muted);
-  font-size: 13px;
+  font-family: var(--pf-font-sans);
+  font-size: 0.875rem;
   line-height: 1.4;
 }
 

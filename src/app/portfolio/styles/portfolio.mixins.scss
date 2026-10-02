@@ -8,16 +8,49 @@
   scroll-margin-top: 110px;
 }
 
-.pf-section-header {
+.pf-section-header,
+.section-header {
   max-width: 690px;
+  display: grid;
+  gap: var(--pf-space-2);
+  margin-bottom: var(--pf-space-6);
+
+  .eyebrow {
+    font-family: var(--pf-font-sans);
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--pf-warm-muted);
+  }
+
+  h2 {
+    font-family: var(--pf-font-display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--pf-text-main);
+  }
+
+  .lede {
+    color: var(--pf-text-muted);
+    font-family: var(--pf-font-sans);
+    font-size: 1rem;
+    line-height: 1.5;
+    max-width: 42rem;
+  }
 }
 
 .pf-eyebrow {
   margin: 0 0 12px;
   color: var(--pf-warm-muted);
-  font-size: 14px;
-  font-weight: 600;
+  font-family: var(--pf-font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
   line-height: 1.2;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .pf-title {
@@ -26,17 +59,20 @@
   font-family: var(--pf-font-heading);
   font-size: var(--pf-section-title);
   font-weight: 700;
-  line-height: 1.08;
+  line-height: 1.2;
   letter-spacing: 0;
 }
 
 .pf-subtitle {
   margin: 18px 0 0;
   color: var(--pf-text-muted);
-  font-size: 16px;
-  line-height: 1.75;
+  font-family: var(--pf-font-sans);
+  font-size: 1rem;
+  line-height: 1.5;
+  max-width: 42rem;
 }
 
+.portfolio-card,
 .pf-card {
   position: relative;
   overflow: hidden;
@@ -47,12 +83,15 @@
     inset 0 1px 0 var(--pf-card-inset),
     0 24px 60px var(--pf-shadow);
   backdrop-filter: blur(22px);
+  padding: var(--pf-space-6);
   transition:
     transform 240ms var(--pf-ease),
     border-color 240ms var(--pf-ease),
     box-shadow 240ms var(--pf-ease);
 }
 
+.portfolio-card::before,
+.portfolio-card::after,
 .pf-card::before,
 .pf-card::after {
   content: '';
@@ -63,6 +102,7 @@
   pointer-events: none;
 }
 
+.portfolio-card::before,
 .pf-card::before {
   top: 14px;
   left: 14px;
@@ -70,6 +110,7 @@
   border-left: 1px solid var(--pf-card-corner);
 }
 
+.portfolio-card::after,
 .pf-card::after {
   right: 14px;
   bottom: 14px;
@@ -77,6 +118,7 @@
   border-bottom: 1px solid var(--pf-card-corner);
 }
 
+.portfolio-card:hover,
 .pf-card:hover {
   transform: translateY(-8px);
   border-color: var(--pf-card-hover-border);
@@ -85,17 +127,20 @@
     var(--pf-card-hover-shadow);
 }
 
+.btn,
 .pf-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 46px;
-  padding: 0 20px;
+  gap: var(--pf-space-2);
+  min-height: var(--pf-control-height);
+  padding: 0 var(--pf-space-5);
   border: 1px solid var(--pf-border);
-  border-radius: 999px;
+  border-radius: var(--pf-radius-md);
   color: var(--pf-text-main);
-  font-size: 14px;
-  font-weight: 700;
+  font-family: var(--pf-font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
   line-height: 1;
   text-decoration: none;
   cursor: pointer;
@@ -105,11 +150,13 @@
     box-shadow 220ms var(--pf-ease);
 }
 
+.btn:hover,
 .pf-button:hover {
   transform: translateY(-2px);
   border-color: rgba(216, 199, 163, 0.46);
 }
 
+.btn--primary,
 .pf-button-primary {
   border-color: transparent;
   background: linear-gradient(135deg, #f5efe2, #d8c7a3);
@@ -117,9 +164,35 @@
   box-shadow: 0 14px 28px rgba(169, 137, 93, 0.28);
 }
 
+.btn--secondary,
 .pf-button-secondary,
+.btn--ghost,
 .pf-button-ghost {
   background: var(--pf-tint);
+}
+
+.badge,
+.pf-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.5rem;
+  padding: 0 var(--pf-space-2);
+  border-radius: var(--pf-radius-pill);
+  font-family: var(--pf-font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  background: var(--pf-tint);
+  color: var(--pf-text-main);
+  border: 1px solid var(--pf-border);
+
+  &--neutral {
+    background: var(--pf-surface-light);
+    color: var(--pf-text-muted);
+    border: 1px solid var(--pf-border);
+  }
 }
 
 .pf-gradient-text {

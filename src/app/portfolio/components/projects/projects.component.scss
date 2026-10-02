@@ -32,11 +32,13 @@
   min-height: 38px;
   padding: 0 18px;
   border: 1px solid var(--pf-border);
-  border-radius: 999px;
+  border-radius: var(--pf-radius-pill);
   background: var(--pf-filter-btn-bg);
   box-shadow: 0 2px 8px var(--pf-shadow);
   color: var(--pf-text-muted);
-  font-size: 14px;
+  font-family: var(--pf-font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
   cursor: pointer;
   animation: filter-pill-in 0.72s var(--pf-ease) both;
   transition:
@@ -277,28 +279,35 @@
 .project-subtitle {
   margin: 0;
   color: var(--pf-warm-muted);
-  font-size: 13px;
+  font-family: var(--pf-font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
 }
 
 .project-content h3 {
   margin: 0;
   color: var(--pf-text-main);
-  font-family: var(--pf-font-heading);
-  font-size: 22px;
-  line-height: 1.15;
+  font-family: var(--pf-font-display);
+  font-size: 1.375rem;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 .stage-card.side .project-content h3,
 .stage-card.far .project-content h3 {
-  font-size: 17px;
+  font-size: 1.125rem;
 }
 
 .project-content p:not(.project-subtitle),
 .highlight-list {
   margin: 0;
   color: var(--pf-text-muted);
-  font-size: 14px;
-  line-height: 1.6;
+  font-family: var(--pf-font-sans);
+  font-size: 0.875rem;
+  line-height: 1.5;
 }
 
 .stage-card.side .project-content p:not(.project-subtitle),
@@ -327,12 +336,17 @@
 }
 
 .tech-row span {
-  padding: 7px 9px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.5rem;
+  padding: 0 var(--pf-space-2);
   border: 1px solid var(--pf-border);
-  border-radius: 999px;
+  border-radius: var(--pf-radius-pill);
   background: var(--pf-tint);
   color: var(--pf-text-soft);
-  font-size: 12px;
+  font-family: var(--pf-font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
 }
 
 .project-actions {
@@ -341,15 +355,17 @@
 
 .project-actions a {
   display: inline-flex;
-  min-height: 36px;
+  min-height: var(--pf-control-height-sm);
   align-items: center;
   justify-content: center;
-  padding: 0 14px;
+  padding: 0 16px;
   border: 1px solid var(--pf-border);
-  border-radius: 999px;
+  border-radius: var(--pf-radius-md);
   background: var(--pf-surface);
   color: var(--pf-text-main);
-  font-size: 12px;
+  font-family: var(--pf-font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
   text-decoration: none;
   transition:
     transform 200ms var(--pf-ease),
