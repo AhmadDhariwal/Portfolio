@@ -32,11 +32,13 @@
   min-height: 38px;
   padding: 0 18px;
   border: 1px solid var(--pf-border);
-  border-radius: 999px;
+  border-radius: var(--pf-radius-pill);
   background: var(--pf-filter-btn-bg);
   box-shadow: 0 2px 8px var(--pf-shadow);
   color: var(--pf-text-muted);
-  font-size: 14px;
+  font-family: var(--pf-font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
   cursor: pointer;
   animation: filter-pill-in 0.72s var(--pf-ease) both;
   transition:
@@ -101,32 +103,21 @@
   background: var(--pf-stage-bg);
   background-size: 64px 64px, 64px 64px, auto, auto, auto;
   box-shadow: var(--pf-stage-shadow);
-  perspective: 1400px;
 }
 
-.project-stage::before,
-.project-stage::after {
+.project-stage::before {
   content: '';
   position: absolute;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-}
-
-.project-stage::before {
   background: var(--pf-stage-before);
-}
-
-.project-stage::after {
-  border-radius: inherit;
-  box-shadow: var(--pf-stage-after-shadow);
 }
 
 .stage-grid {
   position: relative;
   z-index: 2;
   height: 720px;
-  transform-style: preserve-3d;
 }
 
 .stage-card {
@@ -142,16 +133,16 @@
   border-radius: 24px;
   background: var(--pf-stage-card-bg);
   box-shadow: var(--pf-stage-card-shadow);
-  backdrop-filter: blur(20px);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
   transition:
-    transform 700ms var(--pf-ease),
-    opacity 420ms var(--pf-ease),
-    filter 420ms var(--pf-ease),
+    transform 650ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 450ms cubic-bezier(0.22, 1, 0.36, 1),
     border-color 240ms var(--pf-ease),
     box-shadow 240ms var(--pf-ease);
-  transform-style: preserve-3d;
   cursor: pointer;
-  will-change: transform, opacity;
 }
 
 .stage-card::before,
@@ -188,39 +179,56 @@
   z-index: 5;
   opacity: 1;
   filter: none;
-  transform: translateX(-50%) translateZ(120px) rotateY(0deg);
+  transform: translateX(-50%) translateY(0);
+
+  &:hover {
+    transform: translateX(-50%) translateY(-8px);
+  }
 }
 
 .stage-card.side {
   z-index: 3;
-  width: min(340px, 56vw);
-  min-height: 430px;
-  opacity: 0.85;
-  filter: saturate(0.85) brightness(0.96);
+  width: min(380px, 60vw);
+  min-height: 480px;
+  opacity: 0.75;
+  filter: saturate(0.85) brightness(0.92);
+
+  &:hover {
+    opacity: 0.92;
+  }
 }
 
 .stage-card.side.left {
-  transform: translateX(-126%) translateZ(-90px) rotateY(34deg) rotateZ(-2deg);
+  transform: translateX(-128%) scale(0.92);
+
+  &:hover {
+    transform: translateX(-128%) translateY(-4px) scale(0.92);
+  }
 }
 
 .stage-card.side.right {
-  transform: translateX(28%) translateZ(-90px) rotateY(-34deg) rotateZ(2deg);
+  transform: translateX(28%) scale(0.92);
+
+  &:hover {
+    transform: translateX(28%) translateY(-4px) scale(0.92);
+  }
 }
 
 .stage-card.far {
   z-index: 1;
-  width: min(280px, 46vw);
-  min-height: 360px;
-  opacity: 0.45;
-  filter: blur(1px) saturate(0.7) brightness(0.92);
+  width: min(320px, 50vw);
+  min-height: 420px;
+  opacity: 0.35;
+  filter: saturate(0.7) brightness(0.85);
+  pointer-events: none;
 }
 
 .stage-card.left-far {
-  transform: translateX(-180%) translateZ(-190px) rotateY(52deg);
+  transform: translateX(-185%) scale(0.84);
 }
 
 .stage-card.right-far {
-  transform: translateX(80%) translateZ(-190px) rotateY(-52deg);
+  transform: translateX(85%) scale(0.84);
 }
 
 .project-image {
@@ -229,17 +237,6 @@
   margin: 0;
   overflow: hidden;
   background: var(--pf-project-img-bg);
-}
-
-.project-image::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(var(--pf-grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--pf-grid-line) 1px, transparent 1px);
-  background-size: 28px 28px;
-  pointer-events: none;
 }
 
 .project-image img {
@@ -277,28 +274,35 @@
 .project-subtitle {
   margin: 0;
   color: var(--pf-warm-muted);
-  font-size: 13px;
+  font-family: var(--pf-font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
 }
 
 .project-content h3 {
   margin: 0;
   color: var(--pf-text-main);
-  font-family: var(--pf-font-heading);
-  font-size: 22px;
-  line-height: 1.15;
+  font-family: var(--pf-font-sans);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.25;
 }
 
 .stage-card.side .project-content h3,
 .stage-card.far .project-content h3 {
-  font-size: 17px;
+  font-size: 1.125rem;
 }
 
 .project-content p:not(.project-subtitle),
 .highlight-list {
   margin: 0;
   color: var(--pf-text-muted);
-  font-size: 14px;
-  line-height: 1.6;
+  font-family: var(--pf-font-sans);
+  font-size: 0.875rem;
+  line-height: 1.5;
 }
 
 .stage-card.side .project-content p:not(.project-subtitle),
@@ -327,12 +331,18 @@
 }
 
 .tech-row span {
-  padding: 7px 9px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.625rem;
+  padding: 0 var(--pf-space-3);
   border: 1px solid var(--pf-border);
-  border-radius: 999px;
+  border-radius: var(--pf-radius-pill);
   background: var(--pf-tint);
   color: var(--pf-text-soft);
-  font-size: 12px;
+  font-family: var(--pf-font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
 }
 
 .project-actions {
@@ -341,15 +351,17 @@
 
 .project-actions a {
   display: inline-flex;
-  min-height: 36px;
+  min-height: var(--pf-control-height-sm);
   align-items: center;
   justify-content: center;
-  padding: 0 14px;
+  padding: 0 16px;
   border: 1px solid var(--pf-border);
-  border-radius: 999px;
+  border-radius: var(--pf-radius-md);
   background: var(--pf-surface);
   color: var(--pf-text-main);
-  font-size: 12px;
+  font-family: var(--pf-font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
   text-decoration: none;
   transition:
     transform 200ms var(--pf-ease),
@@ -538,11 +550,11 @@
   }
 
   .stage-card.side.left {
-    transform: translateX(-108%) translateZ(-120px) rotateY(34deg);
+    transform: translateX(-110%) scale(0.9);
   }
 
   .stage-card.side.right {
-    transform: translateX(8%) translateZ(-120px) rotateY(-34deg);
+    transform: translateX(10%) scale(0.9);
   }
 }
 
