@@ -94,7 +94,16 @@
   .tech-ring,
   .mini-icons img,
   .timeline-card,
-  .education-orbit {
+  .education-orbit,
+  .education-picture {
     animation: none !important;
   }
+
+  .profile-card,
+  .education-card,
+  .tech-card,
+  .education-picture {
+    transform: none;
+  }
 }
+

@@ -69,71 +69,164 @@ export async function runPortfolioAnimations(
       });
     });
 
-    const aboutGrid = root.querySelector('.about-grid');
-    if (aboutGrid) {
-      const aboutTimeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: aboutGrid,
-          start: 'top 82%'
-        }
+    const mm = gsap.matchMedia(root);
+
+    // Desktop animations (> 768px): coordinated entrance across columns
+    mm.add('(min-width: 769px)', () => {
+      const aboutGrid = root.querySelector('.about-grid');
+      if (aboutGrid) {
+        const aboutTimeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: aboutGrid,
+            start: 'top 82%'
+          }
+        });
+
+        aboutTimeline
+          .from('.profile-card', {
+            x: -44,
+            y: 18,
+            rotateY: -8,
+            opacity: 0,
+            duration: 0.9,
+            ease
+          })
+          .from(
+            '.about-copy-line',
+            {
+              y: 34,
+              opacity: 0,
+              duration: 0.74,
+              stagger: 0.1,
+              ease
+            },
+            '-=0.58'
+          )
+          .from(
+            '.info-row',
+            {
+              x: -22,
+              opacity: 0,
+              duration: 0.62,
+              stagger: 0.08,
+              ease
+            },
+            '-=0.42'
+          )
+          .from(
+            '.about-aside .compact-card',
+            {
+              x: 36,
+              y: 18,
+              opacity: 0,
+              duration: 0.78,
+              stagger: 0.14,
+              ease
+            },
+            '-=0.68'
+          )
+          .from(
+            '.mini-icons img',
+            {
+              scale: 0.5,
+              rotate: -12,
+              opacity: 0,
+              duration: 0.5,
+              stagger: 0.06,
+              ease
+            },
+            '-=0.3'
+          );
+      }
+
+      gsap.utils.toArray<HTMLElement>('.timeline-card').forEach((target, index) => {
+        gsap.from(target, {
+          scrollTrigger: {
+            trigger: target,
+            start: 'top 84%'
+          },
+          x: index % 2 === 0 ? -48 : 48,
+          y: 18,
+          opacity: 0,
+          duration: 0.82,
+          ease
+        });
+      });
+    });
+
+    // Mobile animations (<= 768px): zero horizontal offsets and zero 3D tilts to prevent overflow and trapezoid distortion
+    mm.add('(max-width: 768px)', () => {
+      const profileCard = root.querySelector('.profile-card');
+      if (profileCard) {
+        gsap.from(profileCard, {
+          scrollTrigger: {
+            trigger: profileCard,
+            start: 'top 88%'
+          },
+          y: 28,
+          opacity: 0,
+          duration: 0.75,
+          ease
+        });
+      }
+
+      const aboutCopyLines = root.querySelectorAll('.about-copy-line, .info-row');
+      if (aboutCopyLines.length) {
+        gsap.from(aboutCopyLines, {
+          scrollTrigger: {
+            trigger: aboutCopyLines[0],
+            start: 'top 88%'
+          },
+          y: 22,
+          opacity: 0,
+          duration: 0.65,
+          stagger: 0.06,
+          ease
+        });
+      }
+
+      const compactCards = root.querySelectorAll<HTMLElement>('.about-aside .compact-card');
+      compactCards.forEach((card) => {
+        gsap.from(card, {
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 88%'
+          },
+          y: 22,
+          opacity: 0,
+          duration: 0.65,
+          ease
+        });
       });
 
-      aboutTimeline
-        .from('.profile-card', {
-          x: -72,
-          y: 18,
-          rotateY: -12,
+      const miniIcons = root.querySelectorAll('.mini-icons img');
+      if (miniIcons.length) {
+        gsap.from(miniIcons, {
+          scrollTrigger: {
+            trigger: miniIcons[0],
+            start: 'top 92%'
+          },
+          scale: 0.7,
           opacity: 0,
-          duration: 0.9,
+          duration: 0.45,
+          stagger: 0.05,
           ease
-        })
-        .from(
-          '.about-copy-line',
-          {
-            y: 34,
-            opacity: 0,
-            duration: 0.74,
-            stagger: 0.1,
-            ease
+        });
+      }
+
+      gsap.utils.toArray<HTMLElement>('.timeline-card').forEach((target) => {
+        gsap.from(target, {
+          scrollTrigger: {
+            trigger: target,
+            start: 'top 88%'
           },
-          '-=0.58'
-        )
-        .from(
-          '.info-row',
-          {
-            x: -22,
-            opacity: 0,
-            duration: 0.62,
-            stagger: 0.08,
-            ease
-          },
-          '-=0.42'
-        )
-        .from(
-          '.about-aside .compact-card',
-          {
-            x: 58,
-            y: 18,
-            opacity: 0,
-            duration: 0.78,
-            stagger: 0.14,
-            ease
-          },
-          '-=0.68'
-        )
-        .from(
-          '.mini-icons img',
-          {
-            scale: 0.5,
-            rotate: -12,
-            opacity: 0,
-            duration: 0.5,
-            stagger: 0.06,
-            ease
-          },
-          '-=0.3'
-        );
-    }
+          y: 22,
+          opacity: 0,
+          duration: 0.72,
+          ease
+        });
+      });
+    });
 
     const staggerGroups = [
       { selector: '.stats-shell .stat-item', stagger: 0.12, y: 42, scale: 1 },
@@ -161,20 +254,6 @@ export async function runPortfolioAnimations(
         ease
       });
     }
-
-    gsap.utils.toArray<HTMLElement>('.timeline-card').forEach((target, index) => {
-      gsap.from(target, {
-        scrollTrigger: {
-          trigger: target,
-          start: 'top 84%'
-        },
-        x: index % 2 === 0 ? -48 : 48,
-        y: 18,
-        opacity: 0,
-        duration: 0.82,
-        ease
-      });
-    });
   }, root);
 
   return () => context.revert();
