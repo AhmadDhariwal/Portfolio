@@ -12,6 +12,7 @@ html {
   scroll-behavior: smooth;
   /* Safety net against unintended horizontal scroll at any viewport. */
   overflow-x: clip;
+  background-color: var(--pf-bg);
 }
 
 body {
@@ -23,9 +24,9 @@ body {
   padding-right: env(safe-area-inset-right, 0);
   font-family: var(--pf-font-body);
   background:
-    radial-gradient(circle at top, rgba(216, 199, 163, 0.1), transparent 25%),
-    radial-gradient(circle at 18% 12%, rgba(95, 127, 141, 0.12), transparent 26%),
-    linear-gradient(180deg, #020302 0%, #050604 42%, #030403 100%);
+    radial-gradient(circle at top, var(--pf-body-radial-top), transparent 25%),
+    radial-gradient(circle at 18% 12%, var(--pf-body-radial-mid), transparent 26%),
+    linear-gradient(180deg, var(--pf-bg-top) 0%, var(--pf-bg-mid) 42%, var(--pf-bg-bottom) 100%);
   color: var(--pf-text-main);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -37,8 +38,8 @@ body::before {
   inset: auto 0 0;
   height: 22rem;
   background:
-    radial-gradient(circle at 20% 100%, rgba(168, 137, 93, 0.14), transparent 36%),
-    radial-gradient(circle at 80% 100%, rgba(95, 127, 141, 0.12), transparent 30%);
+    radial-gradient(circle at 20% 100%, var(--pf-body-radial-bot1), transparent 36%),
+    radial-gradient(circle at 80% 100%, var(--pf-body-radial-bot2), transparent 30%);
   pointer-events: none;
   z-index: 0;
 }
@@ -59,6 +60,42 @@ a {
 }
 
 ::selection {
-  background: rgba(216, 199, 163, 0.34);
-  color: white;
+  background: var(--pf-selection-bg);
+  color: var(--pf-selection-color);
+}
+
+/* Invert dark monochrome GitHub icon in dark mode so it stands out crisply */
+[data-theme='dark'] img[src*="github.svg"] {
+  filter: invert(1) brightness(1.2);
+}
+
+/* WCAG 2.2 AA Focus indicators */
+:focus-visible {
+  outline: 2px solid var(--pf-bronze);
+  outline-offset: 3px;
+  border-radius: inherit;
+}
+
+/* Accessible skip to main content */
+.skip-link {
+  position: fixed;
+  top: -999px;
+  left: 20px;
+  z-index: 1000;
+  padding: 12px 20px;
+  border: 1px solid var(--pf-border);
+  border-radius: 12px;
+  background: var(--pf-surface);
+  color: var(--pf-text-main);
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 8px 24px var(--pf-shadow-strong);
+  text-decoration: none;
+  transition: top 160ms var(--pf-ease);
+}
+
+.skip-link:focus {
+  top: 20px;
+  outline: 2px solid var(--pf-bronze);
+  outline-offset: 2px;
 }

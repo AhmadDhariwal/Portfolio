@@ -14,9 +14,47 @@
         {{ link.label }}
       </button>
     }
+
+    <div class="nav-mobile-footer">
+      <div class="nav-mobile-socials">
+        @for (link of socialLinks; track link.label) {
+          <a class="icon-link" [href]="link.href" target="_blank" rel="noreferrer" [attr.aria-label]="link.label">
+            <img [src]="link.icon" [alt]="link.label" />
+          </a>
+        }
+      </div>
+      <a class="pf-button pf-button-primary resume-mobile-btn" [href]="profile.resumeUrl" download>
+        Download Resume
+      </a>
+    </div>
   </nav>
 
   <div class="nav-actions">
+    <button
+      class="theme-toggle"
+      type="button"
+      (click)="toggleTheme()"
+      [attr.aria-label]="themeService.isDark() ? 'Switch to light mode' : 'Switch to dark mode'"
+      [title]="themeService.isDark() ? 'Switch to light mode' : 'Switch to dark mode'"
+    >
+      <span class="theme-icon-wrap" [class.is-dark]="themeService.isDark()">
+        <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2"></path>
+          <path d="M12 20v2"></path>
+          <path d="m4.93 4.93 1.41 1.41"></path>
+          <path d="m17.66 17.66 1.41 1.41"></path>
+          <path d="M2 12h2"></path>
+          <path d="M20 12h2"></path>
+          <path d="m6.34 17.66-1.41 1.41"></path>
+          <path d="m19.07 4.93-1.41 1.41"></path>
+        </svg>
+        <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+        </svg>
+      </span>
+    </button>
+
     @for (link of socialLinks; track link.label) {
       <a class="icon-link" [href]="link.href" target="_blank" rel="noreferrer" [attr.aria-label]="link.label">
         <img [src]="link.icon" [alt]="link.label" />
@@ -25,16 +63,43 @@
     <a class="pf-button pf-button-secondary resume-link" [href]="profile.resumeUrl" download>Resume</a>
   </div>
 
-  <button
-    class="menu-button"
-    [class.menu-button-open]="menuOpen"
-    type="button"
-    (click)="toggleMenu()"
-    [attr.aria-label]="menuOpen ? 'Close navigation menu' : 'Open navigation menu'"
-    [attr.aria-expanded]="menuOpen"
-    aria-controls="primary-nav"
-  >
-    <span></span>
-    <span></span>
-  </button>
+  <div class="nav-mobile-controls">
+    <button
+      class="theme-toggle theme-toggle-mobile"
+      type="button"
+      (click)="toggleTheme()"
+      [attr.aria-label]="themeService.isDark() ? 'Switch to light mode' : 'Switch to dark mode'"
+      [title]="themeService.isDark() ? 'Switch to light mode' : 'Switch to dark mode'"
+    >
+      <span class="theme-icon-wrap" [class.is-dark]="themeService.isDark()">
+        <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2"></path>
+          <path d="M12 20v2"></path>
+          <path d="m4.93 4.93 1.41 1.41"></path>
+          <path d="m17.66 17.66 1.41 1.41"></path>
+          <path d="M2 12h2"></path>
+          <path d="M20 12h2"></path>
+          <path d="m6.34 17.66-1.41 1.41"></path>
+          <path d="m19.07 4.93-1.41 1.41"></path>
+        </svg>
+        <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+        </svg>
+      </span>
+    </button>
+
+    <button
+      class="menu-button"
+      [class.menu-button-open]="menuOpen"
+      type="button"
+      (click)="toggleMenu()"
+      [attr.aria-label]="menuOpen ? 'Close navigation menu' : 'Open navigation menu'"
+      [attr.aria-expanded]="menuOpen"
+      aria-controls="primary-nav"
+    >
+      <span></span>
+      <span></span>
+    </button>
+  </div>
 </header>

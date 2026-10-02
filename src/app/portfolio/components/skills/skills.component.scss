@@ -17,12 +17,10 @@
   width: 82px;
   height: 82px;
   margin: 0 auto 16px;
-  border: 1px solid color-mix(in srgb, var(--skill-color) 42%, rgba(255, 255, 255, 0.12));
+  border: 1px solid var(--pf-orb-border);
   border-radius: 50%;
-  background:
-    radial-gradient(circle at 30% 22%, rgba(255, 255, 255, 0.2), transparent 38%),
-    color-mix(in srgb, var(--skill-color) 20%, rgba(255, 255, 255, 0.04));
-  box-shadow: 0 0 30px color-mix(in srgb, var(--skill-color) 16%, transparent);
+  background: var(--pf-orb-bg);
+  box-shadow: var(--pf-orb-shadow);
   transition: transform 240ms var(--pf-ease), box-shadow 240ms var(--pf-ease);
 }
 
@@ -30,7 +28,7 @@
 .orb-icon::after {
   content: '';
   position: absolute;
-  border: 1px solid color-mix(in srgb, var(--skill-color) 32%, rgba(255, 255, 255, 0.1));
+  border: 1px solid var(--pf-orb-ring-border);
   border-radius: 50%;
 }
 
