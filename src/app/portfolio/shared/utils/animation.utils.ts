@@ -229,10 +229,10 @@ export async function runPortfolioAnimations(
     });
 
     const staggerGroups = [
-      { selector: '.stats-shell .stat-item', stagger: 0.12, y: 42, scale: 1 },
-      { selector: '.project-stage', stagger: 0.12, y: 42, scale: 0.985 },
-      { selector: '.skills-grid .skill-orb', stagger: 0.1, y: 30, scale: 0.92 },
-      { selector: '.contact-grid > *', stagger: 0.15, y: 48, scale: 1 }
+      { selector: '.stats-shell', stagger: 0, y: 32, scale: 1 },
+      { selector: '.project-stage', stagger: 0, y: 28, scale: 1 },
+      { selector: '.skills-grid .skill-orb', stagger: 0.08, y: 24, scale: 1 },
+      { selector: '.contact-grid > *', stagger: 0.12, y: 32, scale: 1 }
     ];
 
     for (const group of staggerGroups) {
