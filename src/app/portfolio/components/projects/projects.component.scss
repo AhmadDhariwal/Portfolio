@@ -101,7 +101,6 @@
   background: var(--pf-stage-bg);
   background-size: 64px 64px, 64px 64px, auto, auto, auto;
   box-shadow: var(--pf-stage-shadow);
-  perspective: 1400px;
 }
 
 .project-stage::before,
@@ -126,7 +125,6 @@
   position: relative;
   z-index: 2;
   height: 720px;
-  transform-style: preserve-3d;
 }
 
 .stage-card {
@@ -144,12 +142,11 @@
   box-shadow: var(--pf-stage-card-shadow);
   backdrop-filter: blur(20px);
   transition:
-    transform 700ms var(--pf-ease),
-    opacity 420ms var(--pf-ease),
+    transform 650ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 450ms cubic-bezier(0.22, 1, 0.36, 1),
     filter 420ms var(--pf-ease),
     border-color 240ms var(--pf-ease),
     box-shadow 240ms var(--pf-ease);
-  transform-style: preserve-3d;
   cursor: pointer;
   will-change: transform, opacity;
 }
@@ -188,7 +185,11 @@
   z-index: 5;
   opacity: 1;
   filter: none;
-  transform: translateX(-50%) translateZ(120px) rotateY(0deg);
+  transform: translateX(-50%) translateY(0);
+
+  &:hover {
+    transform: translateX(-50%) translateY(-8px);
+  }
 }
 
 .stage-card.side {
@@ -197,14 +198,26 @@
   min-height: 430px;
   opacity: 0.85;
   filter: saturate(0.85) brightness(0.96);
+
+  &:hover {
+    opacity: 0.92;
+  }
 }
 
 .stage-card.side.left {
-  transform: translateX(-126%) translateZ(-90px) rotateY(34deg) rotateZ(-2deg);
+  transform: translateX(-128%) scale(0.92);
+
+  &:hover {
+    transform: translateX(-128%) translateY(-4px) scale(0.92);
+  }
 }
 
 .stage-card.side.right {
-  transform: translateX(28%) translateZ(-90px) rotateY(-34deg) rotateZ(2deg);
+  transform: translateX(28%) scale(0.92);
+
+  &:hover {
+    transform: translateX(28%) translateY(-4px) scale(0.92);
+  }
 }
 
 .stage-card.far {
@@ -213,14 +226,15 @@
   min-height: 360px;
   opacity: 0.45;
   filter: blur(1px) saturate(0.7) brightness(0.92);
+  pointer-events: none;
 }
 
 .stage-card.left-far {
-  transform: translateX(-180%) translateZ(-190px) rotateY(52deg);
+  transform: translateX(-185%) scale(0.84);
 }
 
 .stage-card.right-far {
-  transform: translateX(80%) translateZ(-190px) rotateY(-52deg);
+  transform: translateX(85%) scale(0.84);
 }
 
 .project-image {
@@ -538,11 +552,11 @@
   }
 
   .stage-card.side.left {
-    transform: translateX(-108%) translateZ(-120px) rotateY(34deg);
+    transform: translateX(-110%) scale(0.9);
   }
 
   .stage-card.side.right {
-    transform: translateX(8%) translateZ(-120px) rotateY(-34deg);
+    transform: translateX(10%) scale(0.9);
   }
 }
 
